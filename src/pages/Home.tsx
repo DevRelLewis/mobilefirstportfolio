@@ -252,8 +252,8 @@ const Home: React.FC = () => {
                 </div>
                 
                 <a
-                    href="/resume.pdf"
-                    download="LewisMeters_Resume.pdf"
+                    href="/01LewisMeyers.pdf"
+                    download="01LewisMeyers.pdf"
                     className="px-3 py-2 bg-primary-600 text-white text-xs rounded hover:bg-primary-700 transition-colors font-pixel flex items-center whitespace-nowrap"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
