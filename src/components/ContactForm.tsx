@@ -5,7 +5,7 @@ const ContactForm: React.FC = () => {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   return (
-    <section id="contact" className="py-32 px-4 text-center">
+    <section id="contact" className="py-[130px] px-4 text-center">
       <h2 className="text-2xl md:text-3xl font-bold mb-10 text-white">Contact</h2>
       
       <div className="max-w-2xl mx-auto">
