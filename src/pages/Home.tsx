@@ -221,48 +221,47 @@ const Home: React.FC = () => {
         
         <div className="max-w-3xl mx-auto bg-white bg-opacity-90 p-5 md:p-8 rounded-lg shadow-lg text-black">
             {/* Resume Header */}
-           <div className="flex justify-between items-start mb-6">
-            <div>
-                <h2 className="text-xl md:text-2xl font-bold mb-2">Lewis Meyers</h2>
-                <p className="text-xs mb-4">
-                <a href="mailto:meyerslewis193@gmail.com" className="text-blue-700 hover:underline">
-                    meyerslewis193@gmail.com
-                </a>
-                </p>
-                <p className="text-xs mb-4">
-                 571-294-9222 |{" "}
-
+            <div className="flex flex-col sm:flex-row justify-between items-start mb-6 gap-4">
+                <div>
+                    <h2 className="text-xl md:text-2xl font-bold mb-2">Lewis Meyers</h2>
+                    <p className="text-xs mb-2">
+                    <a href="mailto:meyerslewis193@gmail.com" className="text-blue-700 hover:underline">
+                        meyerslewis193@gmail.com
+                    </a>
+                    </p>
+                    <p className="text-xs mb-2">
+                    571-294-9222 |{" "}
+                    <a
+                        href="https://www.linkedin.com/in/lewiscmeyers/"
+                        className="text-blue-700 hover:underline"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        LinkedIn
+                    </a>{" "}
+                    | {" "}
+                    <a 
+                        href="https://lewismeyers.dev" 
+                        className="text-blue-700 hover:underline"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        lewismeyers.dev
+                    </a>
+                    </p>
+                </div>
+                
                 <a
-                    href="https://www.linkedin.com/in/lewiscmeyers/"
-                    className="text-blue-700 hover:underline"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="/resume.pdf"
+                    download="LewisMeters_Resume.pdf"
+                    className="px-3 py-2 bg-primary-600 text-white text-xs rounded hover:bg-primary-700 transition-colors font-pixel flex items-center whitespace-nowrap"
                 >
-                    LinkedIn
-                </a>{" "}
-                | {" "}
-                <a 
-                    href="https://lewismeyers.dev" 
-                    className="text-blue-700 hover:underline"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    lewismeyers.dev
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                    </svg>
+                    Download PDF
                 </a>
-                </p>
-            </div>
-            
-            <a
-                href="/resume.pdf"
-                download="LewisMeters_Resume.pdf"
-                className="px-3 py-2 bg-primary-600 text-white text-xs rounded hover:bg-primary-700 transition-colors font-pixel flex items-center"
-            >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                </svg>
-                Download PDF
-            </a>
-            </div>
+                </div>
             <div className="text-left">
             <h3 className="text-lg md:text-xl font-bold mt-6 mb-2 border-b-2 border-gray-300 pb-1">
                 EXPERIENCE
