@@ -160,8 +160,6 @@ const Home: React.FC = () => {
   );
 })}
         </div>
-
-        {/* Profile Content */}
         <div className="z-10 text-center">
           <img 
             src="./lewis_8bit.png" 
@@ -175,12 +173,10 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Projects Section */}
       <section id="projects" className="py-32 px-4 text-center">
         <h2 className="text-2xl md:text-3xl font-bold mb-10">My Projects</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          {/* Project Card 1 - Dream Net */}
           <div className="bg-white bg-opacity-10 rounded-lg overflow-hidden shadow-lg border-2 border-white border-opacity-20 backdrop-blur-sm transition-transform duration-300 hover:scale-105">
             <div className="h-40 bg-primary-500 flex items-center justify-center">
               <span className="text-4xl">🌙</span>
@@ -198,8 +194,7 @@ const Home: React.FC = () => {
               <button className="pixel-btn">View Project</button>
             </div>
           </div>
-          
-          {/* Project Card 2 - Trading Bot */}
+
           <div className="bg-white bg-opacity-10 rounded-lg overflow-hidden shadow-lg border-2 border-white border-opacity-20 backdrop-blur-sm transition-transform duration-300 hover:scale-105">
             <div className="h-40 bg-primary-500 flex items-center justify-center">
               <span className="text-4xl">📈</span>
@@ -226,7 +221,6 @@ const Home: React.FC = () => {
         
         <div className="max-w-3xl mx-auto bg-white bg-opacity-90 p-5 md:p-8 rounded-lg shadow-lg text-black">
             {/* Resume Header */}
-           {/* Resume Header with updated contact info and download button */}
            <div className="flex justify-between items-start mb-6">
             <div>
                 <h2 className="text-xl md:text-2xl font-bold mb-2">Lewis Meyers</h2>
@@ -269,14 +263,11 @@ const Home: React.FC = () => {
                 Download PDF
             </a>
             </div>
-
-            {/* Resume Content - All sections visible */}
             <div className="text-left">
             <h3 className="text-lg md:text-xl font-bold mt-6 mb-2 border-b-2 border-gray-300 pb-1">
                 EXPERIENCE
             </h3>
             
-            {/* AI Frontend/Tier 3 Engineer */}
             <div className="mb-4">
                 <div className="font-bold text-sm md:text-base">AI Frontend/Tier 3 Engineer</div>
                 <div className="text-xs mb-2">Teachstone, Virginia, June 2023 – Present</div>
@@ -292,8 +283,6 @@ const Home: React.FC = () => {
                 </li>
                 </ul>
             </div>
-
-            {/* AI Platform Engineer */}
             <div className="mb-4">
                 <div className="font-bold text-sm md:text-base">AI Platform Engineer</div>
                 <div className="text-xs mb-2">Hyperlink, SF Bay Area, Jan 2024 – May 2024</div>
@@ -309,8 +298,6 @@ const Home: React.FC = () => {
                 </li>
                 </ul>
             </div>
-
-            {/* Intern Full Stack Developer */}
             <div className="mb-4">
                 <div className="font-bold text-sm md:text-base">Intern Full Stack Developer</div>
                 <div className="text-xs mb-2">Dank Coders, SF Bay Area, Feb 2023 – Feb 2024</div>
@@ -326,8 +313,6 @@ const Home: React.FC = () => {
                 </li>
                 </ul>
             </div>
-
-            {/* Infantryman/Tanker */}
             <div className="mb-4">
                 <div className="font-bold text-sm md:text-base">Infantryman/Tanker</div>
                 <div className="text-xs mb-2">Army National Guard, Leesburg, VA, Dec 2015 – Dec 2021</div>
@@ -347,8 +332,6 @@ const Home: React.FC = () => {
             <h3 className="text-lg md:text-xl font-bold mt-6 mb-2 border-b-2 border-gray-300 pb-1">
                 PROJECTS
             </h3>
-            
-            {/* Dream Net AI Dream Interpreter */}
             <div className="mb-4">
                 <div className="font-bold text-sm md:text-base">Dream Net AI Dream Interpreter</div>
                 <ul className="list-disc ml-5 mb-3 text-xs md:text-sm">
@@ -360,8 +343,6 @@ const Home: React.FC = () => {
                 </li>
                 </ul>
             </div>
-
-            {/* Automated Options Trading Bot */}
             <div className="mb-4">
                 <div className="font-bold text-sm md:text-base">Automated Options Trading Bot</div>
                 <ul className="list-disc ml-5 mb-3 text-xs md:text-sm">
