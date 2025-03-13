@@ -263,6 +263,21 @@ const Home: React.FC = () => {
                 </a>
                 </div>
             <div className="text-left">
+
+            <h3 className="text-lg md:text-xl font-bold mt-6 mb-2 border-b-2 border-gray-300 pb-1">
+            TOOLS
+            </h3>
+            <div className="mb-4">
+            <ul className="list-disc ml-5 mb-3 text-xs md:text-sm">
+                <li className="mb-2">
+                Git, Github, Docker, Jira, Visual Studio Code
+                </li>
+                <li className="mb-2">
+                JavaScript-TypeScript, Next.js, Bootstrap, HTML5/CSS3, TailwindCSS, MantineCSS
+                </li>
+            </ul>
+            </div>
+
             <h3 className="text-lg md:text-xl font-bold mt-6 mb-2 border-b-2 border-gray-300 pb-1">
                 EXPERIENCE
             </h3>
