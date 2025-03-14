@@ -159,7 +159,7 @@ const Home: React.FC = () => {
             </div>
           );
         })}
-                </div>
+        </div>
         <div className="z-10 text-center">
           <img 
             src="./lewis_8bit.png" 
@@ -194,7 +194,12 @@ const Home: React.FC = () => {
                 <span className="px-2 py-1 bg-primary-600 rounded-full text-xs">ChatGPT</span>
                 <span className="px-2 py-1 bg-primary-600 rounded-full text-xs">Supabase</span>
               </div>
-              <button className="pixel-btn">View Project</button>
+              <button 
+                onClick={() => window.open('https://dreamy-xi.vercel.app/', '_blank')} 
+                className="pixel-btn"
+              >
+                View Project
+              </button>
             </div>
           </div>
 
