@@ -6,7 +6,7 @@ const ContactForm: React.FC = () => {
 
   return (
     <section id="contact" className="py-[130px] px-4 text-center">
-      <h2 className="text-2xl md:text-3xl font-bold mb-10 text-white">Contact</h2>
+      <h2 className="text-2xl md:text-3xl font-bold mb-10 text-black">Contact</h2>
       
       <div className="max-w-2xl mx-auto">
         {/* The key part is using FormSubmit's action URL with your email */}
@@ -42,7 +42,7 @@ const ContactForm: React.FC = () => {
               name="name"
               placeholder="Name"
               required
-              className="w-full px-4 py-3 rounded-md border-2 border-primary-300 bg-white bg-opacity-10 text-white placeholder-white placeholder-opacity-70 focus:outline-none focus:ring-2 focus:ring-primary-300 font-pixel text-sm"
+              className="w-full px-4 py-3 rounded-md border-2 border-primary-300 bg-white bg-opacity-10 text-black placeholder-grey placeholder-opacity-70 focus:outline-none focus:ring-2 focus:ring-primary-300 font-pixel text-sm"
             />
           </div>
           
@@ -52,7 +52,7 @@ const ContactForm: React.FC = () => {
               name="email"
               placeholder="Your email"
               required
-              className="w-full px-4 py-3 rounded-md border-2 border-primary-300 bg-white bg-opacity-10 text-white placeholder-white placeholder-opacity-70 focus:outline-none focus:ring-2 focus:ring-primary-300 font-pixel text-sm"
+              className="w-full px-4 py-3 rounded-md border-2 border-primary-300 bg-white bg-opacity-10 text-black placeholder-grey placeholder-opacity-70 focus:outline-none focus:ring-2 focus:ring-primary-300 font-pixel text-sm"
             />
           </div>
           
@@ -62,7 +62,7 @@ const ContactForm: React.FC = () => {
               name="subject"
               placeholder="Subject"
               required
-              className="w-full px-4 py-3 rounded-md border-2 border-primary-300 bg-white bg-opacity-10 text-white placeholder-white placeholder-opacity-70 focus:outline-none focus:ring-2 focus:ring-primary-300 font-pixel text-sm"
+              className="w-full px-4 py-3 rounded-md border-2 border-primary-300 bg-white bg-opacity-10 text-black placeholder-grey placeholder-opacity-70 focus:outline-none focus:ring-2 focus:ring-primary-300 font-pixel text-sm"
             />
           </div>
           
@@ -72,7 +72,7 @@ const ContactForm: React.FC = () => {
               placeholder="Message..."
               required
               rows={8}
-              className="w-full px-4 py-3 rounded-md border-2 border-primary-300 bg-white bg-opacity-10 text-white placeholder-white placeholder-opacity-70 focus:outline-none focus:ring-2 focus:ring-primary-300 font-pixel text-sm resize-none"
+              className="w-full px-4 py-3 rounded-md border-2 border-primary-300 bg-white bg-opacity-10 text-black placeholder-grey placeholder-opacity-70 focus:outline-none focus:ring-2 focus:ring-primary-300 font-pixel text-sm resize-none"
             />
           </div>
           
@@ -80,7 +80,7 @@ const ContactForm: React.FC = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full py-3 px-6 bg-primary-600 hover:bg-primary-700 text-white rounded-md transition-colors duration-300 font-pixel text-sm md:text-base disabled:opacity-70"
+              className="w-full py-3 px-6 bg-primary-600 hover:bg-primary-700 text-black rounded-md transition-colors duration-300 font-pixel text-sm md:text-base disabled:opacity-70"
             >
               {isSubmitting ? 'Submitting...' : 'Submit'}
             </button>

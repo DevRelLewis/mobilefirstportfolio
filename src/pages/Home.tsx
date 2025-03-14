@@ -164,18 +164,18 @@ const Home: React.FC = () => {
             alt="Lewis Meyers" 
             className="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-white object-cover shadow-lg mx-auto"
           />
-          <h1 className="mt-3 text-xl md:text-2xl font-bold text-shadow">Lewis Meyers</h1>
-          <p className="mt-2 text-base md:text-lg max-w-md mx-auto">
+          <h1 className="mt-3 text-xl md:text-2xl font-bold text-black">Lewis Meyers</h1>
+          <p className="mt-2 text-base md:text-lg max-w-md mx-auto text-black">
             Frontend Developer
           </p>
-          <p className="mt-2 text-base md:text-lg max-w-md mx-auto">
+          <p className="mt-2 text-base md:text-lg max-w-md mx-auto text-black">
             meyerslewis193@gmail.com
           </p>
         </div>
       </section>
 
       <section id="projects" className="py-32 px-4 text-center">
-        <h2 className="text-2xl md:text-3xl font-bold mb-10">My Projects</h2>
+        <h2 className="text-2xl md:text-3xl font-bold mb-10 text-black">My Projects</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
       <div className="bg-white bg-opacity-10 rounded-lg overflow-hidden shadow-lg border-2 border-white border-opacity-20 backdrop-blur-sm transition-transform duration-300 hover:scale-105">
@@ -198,7 +198,7 @@ const Home: React.FC = () => {
           </div>
           <button 
             onClick={() => window.open('https://dreamy-xi.vercel.app/', '_blank')} 
-            className="pixel-btn"
+            className="pixel-btn border-black text-black"
           >
             View Project
           </button>
@@ -224,7 +224,7 @@ const Home: React.FC = () => {
             <span className="px-2 py-1 bg-primary-600 rounded-full text-xs">Howler.js</span>
           </div>
           <a href="https://soke2x.vercel.app/" target="_blank" rel="noopener noreferrer">
-            <button className="pixel-btn">View Project</button>
+            <button className="pixel-btn border-black text-black">View Project</button>
           </a>
         </div>
       </div>
@@ -233,7 +233,7 @@ const Home: React.FC = () => {
 
       {/* Resume Section */}
       <section id="resume" className="py-28 px-4" ref={resumeContentRef}>
-        <h2 className="text-2xl md:text-3xl font-bold text-center mb-10">Resume</h2>
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-10 text-black">Resume</h2>
         
         <div className="max-w-3xl mx-auto bg-white bg-opacity-95 p-5 md:p-8 rounded-lg shadow-lg text-black">
             {/* Resume Header */}
