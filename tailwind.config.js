@@ -18,7 +18,14 @@ module.exports = {
         }
       },
       fontFamily: {
-        'pixel': ['"Press Start 2P"', 'cursive']
+        'pixel': ['"Press Start 2P"', 'cursive'],
+        'caveat': ['Caveat', 'cursive'],
+        'danfo': ['Danfo', 'sans-serif'],
+        'jacquard': ['Jacquard 12', 'serif'],
+        'lato': ['Lato', 'sans-serif'],
+        'orbitron': ['Orbitron', 'sans-serif'],
+        'pixelify': ['Pixelify Sans', 'cursive'],
+        'press-start': ['"Press Start 2P"', 'cursive']
       },
       animation: {
         'bounce': 'bounce 1s infinite',

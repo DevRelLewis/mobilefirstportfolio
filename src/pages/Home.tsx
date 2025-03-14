@@ -232,7 +232,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Resume Section */}
-      <section id="resume" className="py-28 px-4" ref={resumeContentRef}>
+      <section id="resume" className="py-28 px-4 font-lato" ref={resumeContentRef}>
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-10 text-black">Resume</h2>
         
         <div className="max-w-3xl mx-auto bg-white bg-opacity-95 p-5 md:p-8 rounded-lg shadow-lg text-black">
@@ -270,7 +270,7 @@ const Home: React.FC = () => {
                 <a
                     href="/01LewisMeyers.pdf"
                     download="01LewisMeyers.pdf"
-                    className="px-3 py-2 bg-primary-600 text-white text-sm rounded hover:bg-primary-700 transition-colors font-pixel flex items-center whitespace-nowrap"
+                    className="px-3 py-2 bg-primary-600 text-white text-sm rounded hover:bg-primary-700 transition-colors font-lato flex items-center whitespace-nowrap"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />

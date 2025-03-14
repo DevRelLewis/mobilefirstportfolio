@@ -2,11 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+/* Replace the single font import with all the new fonts */
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Danfo&family=Jacquard+12&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Orbitron&family=Pixelify+Sans:wght@400..700&family=Press+Start+2P&display=swap');
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -50,6 +51,35 @@ body::-webkit-scrollbar {
   .text-shadow {
     text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
   }
+  
+  /* New font utility classes */
+  .font-caveat {
+    font-family: 'Caveat', cursive;
+  }
+  
+  .font-danfo {
+    font-family: 'Danfo', sans-serif;
+  }
+  
+  .font-jacquard {
+    font-family: 'Jacquard 12', serif;
+  }
+  
+  .font-lato {
+    font-family: 'Lato', sans-serif;
+  }
+  
+  .font-orbitron {
+    font-family: 'Orbitron', sans-serif;
+  }
+  
+  .font-pixelify {
+    font-family: 'Pixelify Sans', cursive;
+  }
+  
+  .font-press-start {
+    font-family: 'Press Start 2P', cursive;
+  }
 }
 
 @keyframes float {
@@ -80,6 +110,3 @@ body::-webkit-scrollbar {
     transform: translate(0, 0);
   }
 }
-
-
-
