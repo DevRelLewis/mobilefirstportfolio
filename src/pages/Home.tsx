@@ -1,6 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-// Remove this import if not using it
-// import { Typewriter } from 'react-simple-typewriter';
 import Navbar from '../components/Navbar';
 import ContactForm from '../components/ContactForm';
 
@@ -180,47 +178,57 @@ const Home: React.FC = () => {
         <h2 className="text-2xl md:text-3xl font-bold mb-10">My Projects</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          <div className="bg-white bg-opacity-10 rounded-lg overflow-hidden shadow-lg border-2 border-white border-opacity-20 backdrop-blur-sm transition-transform duration-300 hover:scale-105">
-            <div className="h-40 bg-primary-500 flex items-center justify-center">
-              <span className="text-4xl">🌙</span>
-            </div>
-            <div className="p-5">
-              <h3 className="text-lg md:text-xl mb-2">Dream Net AI</h3>
-              <p className="text-white text-opacity-80 text-sm mb-4">
-                AI dream interpreter using Next.js and ChatGPT, trained on specialized dream data with 25% improved accuracy.
-              </p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                <span className="px-2 py-1 bg-primary-600 rounded-full text-xs">Next.js</span>
-                <span className="px-2 py-1 bg-primary-600 rounded-full text-xs">ChatGPT</span>
-                <span className="px-2 py-1 bg-primary-600 rounded-full text-xs">Supabase</span>
-              </div>
-              <button 
-                onClick={() => window.open('https://dreamy-xi.vercel.app/', '_blank')} 
-                className="pixel-btn"
-              >
-                View Project
-              </button>
-            </div>
-          </div>
-
-          <div className="bg-white bg-opacity-10 rounded-lg overflow-hidden shadow-lg border-2 border-white border-opacity-20 backdrop-blur-sm transition-transform duration-300 hover:scale-105">
-            <div className="h-40 bg-primary-500 flex items-center justify-center">
-              <span className="text-4xl">📈</span>
-            </div>
-            <div className="p-5">
-              <h3 className="text-lg md:text-xl mb-2">Options Trading Bot</h3>
-              <p className="text-white text-opacity-80 text-sm mb-4">
-                Python trading bot using Alpaca API and OpenAI, delivering 15% ROI in $100,000 paper money tests.
-              </p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                <span className="px-2 py-1 bg-primary-600 rounded-full text-xs">Python</span>
-                <span className="px-2 py-1 bg-primary-600 rounded-full text-xs">Alpaca API</span>
-                <span className="px-2 py-1 bg-primary-600 rounded-full text-xs">Streamlit</span>
-              </div>
-              <button className="pixel-btn">View Project</button>
-            </div>
-          </div>
+      <div className="bg-white bg-opacity-10 rounded-lg overflow-hidden shadow-lg border-2 border-white border-opacity-20 backdrop-blur-sm transition-transform duration-300 hover:scale-105">
+        <div className="h-40 bg-primary-500 flex items-center justify-center">
+        <img 
+            src="/dream-net.png" 
+            alt="Dream Net AI Screenshot" 
+            className="w-full h-full object-cover"
+          />
         </div>
+        <div className="p-5">
+          <h3 className="text-lg md:text-xl mb-2">Dream Net AI</h3>
+          <p className="text-white text-opacity-80 text-sm mb-4">
+            AI dream interpreter using Next.js and ChatGPT, trained on specialized dream data with 25% improved accuracy.
+          </p>
+          <div className="flex flex-wrap gap-2 mb-4 justify-center">
+            <span className="px-2 py-1 bg-primary-600 rounded-full text-xs">Next.js</span>
+            <span className="px-2 py-1 bg-primary-600 rounded-full text-xs">ChatGPT</span>
+            <span className="px-2 py-1 bg-primary-600 rounded-full text-xs">Supabase</span>
+          </div>
+          <button 
+            onClick={() => window.open('https://dreamy-xi.vercel.app/', '_blank')} 
+            className="pixel-btn"
+          >
+            View Project
+          </button>
+        </div>
+      </div>
+
+      <div className="bg-white bg-opacity-10 rounded-lg overflow-hidden shadow-lg border-2 border-white border-opacity-20 backdrop-blur-sm transition-transform duration-300 hover:scale-105">
+        <div className="h-40 bg-primary-500 flex items-center justify-center">
+        <img 
+            src="/sokeswig.png" 
+            alt="Soke2x Smoothie Shop Screenshot" 
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="p-5">
+          <h3 className="text-lg md:text-xl mb-2">Soke2x Smoothie Shop</h3>
+          <p className="text-white text-opacity-80 text-sm mb-4">
+            Interactive Next.js website for a smoothie brand featuring 3D models, animations, and custom audio visualizers for an immersive user experience.
+          </p>
+          <div className="flex flex-wrap gap-2 mb-4 justify-center">
+            <span className="px-2 py-1 bg-primary-600 rounded-full text-xs">Next.js</span>
+            <span className="px-2 py-1 bg-primary-600 rounded-full text-xs">Three.js</span>
+            <span className="px-2 py-1 bg-primary-600 rounded-full text-xs">Howler.js</span>
+          </div>
+          <a href="https://soke2x.vercel.app/" target="_blank" rel="noopener noreferrer">
+            <button className="pixel-btn">View Project</button>
+          </a>
+        </div>
+      </div>
+    </div>
       </section>
 
       {/* Resume Section */}
