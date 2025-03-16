@@ -18,7 +18,6 @@ const Home: React.FC = () => {
     animationDelay: string;
   }
 
-  // Tech stack icons for the floating effect
   const techIcons = [
     '/docker.png',
     '/git.png',
@@ -38,10 +37,7 @@ const Home: React.FC = () => {
   ];
   
   useEffect(() => {
-  // Define positions relative to the center (profile picture)
-  // Each icon will have a base position and then float around that position
   const createRelativePositions = (isMobile: boolean): FloatingIcon[] => {
-    // Same positions for both mobile and desktop, just adjust spacing
     const basePositions = [
       // Top row
       { top: '35%', left: '38%' },
@@ -64,7 +60,6 @@ const Home: React.FC = () => {
     
     return basePositions.map((pos, index) => ({
       ...pos,
-      // Increase desktop icon sizes significantly
       size: isMobile ? '34px' : `${55 + (index % 4) * 5}px`,
       color: [
         'rgba(186, 85, 211, 0.8)',
@@ -85,18 +80,14 @@ const Home: React.FC = () => {
     }
   };
   
-  // Set initial icons
   handleResize();
   
-  // Add event listener for window resize
   window.addEventListener('resize', handleResize);
   
-  // Clean up event listener
   return () => window.removeEventListener('resize', handleResize);
 }, []);
 
   useEffect(() => {
-    // Simple loading animation
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 500);
@@ -108,7 +99,6 @@ const Home: React.FC = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  // If you're not using handleOnType, you can remove this function
   const handleOnType = () => {
     if (bottomRef.current) {
       bottomRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -118,7 +108,7 @@ const Home: React.FC = () => {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      const offset = 100; // Offset to account for the fixed header
+      const offset = 100; 
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
       window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
@@ -127,12 +117,10 @@ const Home: React.FC = () => {
 
   return (
     <div className={`min-h-screen bg-gradient-to-b from-primary-300 via-primary-200 to-primary-100 font-pixel text-white transition-opacity duration-1000 ${!isLoading ? 'opacity-100' : 'opacity-0'}`}>
-      {/* Navbar */}
       <Navbar scrollToSection={scrollToSection} />
 
       {/* Hero Section */}
       <section id="home" className="pt-20 px-4 min-h-screen flex flex-col items-center justify-center relative">
-        {/* Floating Icons - positioned absolutely */}
         <div className="absolute inset-0 pointer-events-none">
         {floatingIcons.map((icon, index) => {
           const iconSrc = techIcons[index % techIcons.length];

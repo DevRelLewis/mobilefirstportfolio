@@ -1,4 +1,3 @@
-// src/components/Navbar.tsx
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -12,11 +11,9 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection }) => {
   const location = useLocation();
   
   useEffect(() => {
-    // Get the current hostname
     setHostname(window.location.hostname);
   }, []);
   
-  // Check if we're on the professional portfolio page
   const isProfessionalPage = location.pathname === '/professional' || 
                            (location.pathname === '/' && hostname.includes('portfolio'));
 
