@@ -402,10 +402,10 @@ const Home: React.FC = () => {
             Email
           </a>
           <Link 
-            to="/welcome" 
+            to="/" 
             className="text-gray-300 hover:text-white transition-colors"
           >
-            Passion Portfolio
+            Simple Resume
           </Link>
         </div>
       </footer>
