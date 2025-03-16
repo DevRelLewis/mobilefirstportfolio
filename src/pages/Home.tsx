@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Navbar from '../components/Navbar';
 import ContactForm from '../components/ContactForm';
+import { Link } from 'react-router-dom';
 
 const Home: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -395,6 +396,31 @@ const Home: React.FC = () => {
         `}
       </style>
         <ContactForm />
+        <footer className="bg-gray-800 text-white py-8 px-4 text-center font-pixel">
+        <p className="mb-4">© {new Date().getFullYear()} Lewis Meyers. All rights reserved.</p>
+        <div className="flex justify-center space-x-4">
+          <a 
+            href="https://www.linkedin.com/in/lewiscmeyers/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-gray-300 hover:text-white transition-colors"
+          >
+            LinkedIn
+          </a>
+          <a 
+            href="mailto:meyerslewis193@gmail.com" 
+            className="text-gray-300 hover:text-white transition-colors"
+          >
+            Email
+          </a>
+          <Link 
+            to="/welcome" 
+            className="text-gray-300 hover:text-white transition-colors"
+          >
+            Passion Portfolio
+          </Link>
+        </div>
+      </footer>
     </div>
   );
 };

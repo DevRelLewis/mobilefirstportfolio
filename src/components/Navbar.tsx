@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+// src/components/Navbar.tsx
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 interface NavbarProps {
   scrollToSection: (id: string) => void;
@@ -6,6 +8,17 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ scrollToSection }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [hostname, setHostname] = useState<string>('');
+  const location = useLocation();
+  
+  useEffect(() => {
+    // Get the current hostname
+    setHostname(window.location.hostname);
+  }, []);
+  
+  // Check if we're on the professional portfolio page
+  const isProfessionalPage = location.pathname === '/professional' || 
+                           (location.pathname === '/' && hostname.includes('portfolio'));
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -17,7 +30,7 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection }) => {
   };
 
   return (
-    <header className="fixed top-0 left-0 w-full bg-purple-700 z-50 shadow-md">
+    <header className={`fixed top-0 left-0 w-full z-50 shadow-md ${isProfessionalPage ? 'bg-gray-800' : 'bg-purple-700'}`}>
       <div className="w-full py-4">
         <div className="flex justify-between items-center px-6">
           <button 
@@ -59,6 +72,15 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection }) => {
                 >
                   Contact
                 </button>
+              </li>
+              <li>
+                {/* Replace direct URL with Link component */}
+                <Link 
+                  to="/"
+                  className="text-white font-pixel hover:opacity-80 focus:outline-none"
+                >
+                  {hostname.includes('portfolio') ? 'Passion Portfolio' : 'Simple Resume'}
+                </Link>
               </li>
               <li>
                 <button 
@@ -120,6 +142,15 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection }) => {
                 >
                   Contact
                 </button>
+              </li>
+              <li>
+                {/* Replace direct URL with Link component in mobile menu too */}
+                <Link 
+                  to="/"
+                  className="text-white font-pixel hover:opacity-80 focus:outline-none"
+                >
+                  {hostname.includes('portfolio') ? 'Passion Portfolio' : 'Simple Resume'}
+                </Link>
               </li>
               <li>
                 <button 
