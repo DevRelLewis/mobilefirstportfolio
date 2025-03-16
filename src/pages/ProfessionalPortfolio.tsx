@@ -59,9 +59,9 @@ const ProfessionalPortfolio: React.FC = () => {
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-center gap-8">
           <div className="w-40 h-40 md:w-48 md:h-48 bg-gray-200 rounded-full flex items-center justify-center border-4 border-gray-100 shadow-lg">
             <img 
-            src="../lewis_prof.jpg" 
+            src="./lewis_prof.png" 
             alt="Lewis Meyers" 
-            className="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-white object-cover shadow-lg mx-auto" style={{ objectPosition: '0 10%' }}         />
+            className="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-white object-cover shadow-lg mx-auto"         />
           </div>
           
           <div className="text-center md:text-left">
