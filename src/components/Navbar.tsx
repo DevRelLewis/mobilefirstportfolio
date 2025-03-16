@@ -74,7 +74,6 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection }) => {
                 </button>
               </li>
               <li>
-                {/* Replace direct URL with Link component */}
                 <Link 
                   to="/"
                   className="text-white font-pixel hover:opacity-80 focus:outline-none"
@@ -144,7 +143,6 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection }) => {
                 </button>
               </li>
               <li>
-                {/* Replace direct URL with Link component in mobile menu too */}
                 <Link 
                   to="/"
                   className="text-white font-pixel hover:opacity-80 focus:outline-none"
