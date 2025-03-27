@@ -3,9 +3,11 @@ import { Link, useLocation } from 'react-router-dom';
 
 interface NavbarProps {
   scrollToSection: (id: string) => void;
+  fontMode: string;
+  toggleFontMode: () => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ scrollToSection }) => {
+const Navbar: React.FC<NavbarProps> = ({ scrollToSection, fontMode, toggleFontMode }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [hostname, setHostname] = useState<string>('');
   const location = useLocation();
@@ -26,22 +28,25 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection }) => {
     setIsMenuOpen(false);
   };
 
+  // Get the font class based on current mode
+  const fontClass = fontMode === 'pixel' ? 'font-pixel' : 'font-lato';
+
   return (
     <header className={`fixed top-0 left-0 w-full z-50 shadow-md ${isProfessionalPage ? 'bg-gray-800' : 'bg-purple-700'}`}>
       <div className="w-full py-4">
         <div className="flex justify-between items-center px-6">
           <button 
             onClick={() => handleNavClick('home')}
-            className="text-white font-pixel text-xl focus:outline-none"
+            className={`text-white ${fontClass} text-xl focus:outline-none`}
           >
             Lewis.dev
           </button>
           <nav className="hidden md:block">
-            <ul className="flex space-x-8">
+            <ul className="flex space-x-8 items-center">
               <li>
                 <button 
                   onClick={() => handleNavClick('home')}
-                  className="text-white font-pixel hover:opacity-80 focus:outline-none"
+                  className={`text-white ${fontClass} hover:opacity-80 focus:outline-none`}
                 >
                   Home
                 </button>
@@ -49,7 +54,7 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection }) => {
               <li>
                 <button 
                   onClick={() => handleNavClick('projects')}
-                  className="text-white font-pixel hover:opacity-80 focus:outline-none"
+                  className={`text-white ${fontClass} hover:opacity-80 focus:outline-none`}
                 >
                   Projects
                 </button>
@@ -57,7 +62,7 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection }) => {
               <li>
                 <button 
                   onClick={() => handleNavClick('resume')}
-                  className="text-white font-pixel hover:opacity-80 focus:outline-none"
+                  className={`text-white ${fontClass} hover:opacity-80 focus:outline-none`}
                 >
                   Resume
                 </button>
@@ -65,7 +70,7 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection }) => {
               <li>
                 <button 
                   onClick={() => handleNavClick('contact')}
-                  className="text-white font-pixel hover:opacity-80 focus:outline-none"
+                  className={`text-white ${fontClass} hover:opacity-80 focus:outline-none`}
                 >
                   Contact
                 </button>
@@ -73,7 +78,7 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection }) => {
               <li>
                 <Link 
                   to="/"
-                  className="text-white font-pixel hover:opacity-80 focus:outline-none"
+                  className={`text-white ${fontClass} hover:opacity-80 focus:outline-none`}
                 >
                   {hostname.includes('portfolio') ? 'Passion Portfolio' : 'Simple Resume'}
                 </Link>
@@ -81,9 +86,35 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection }) => {
               <li>
                 <button 
                   onClick={() => window.open('https://www.linkedin.com/in/lewiscmeyers/', '_blank')}
-                  className="text-white font-pixel hover:opacity-80 focus:outline-none"
+                  className={`text-white ${fontClass} hover:opacity-80 focus:outline-none`}
                 >
                   LinkedIn
+                </button>
+              </li>
+              {/* Font Toggle */}
+              <li className="flex items-center">
+                <button
+                  onClick={toggleFontMode}
+                  className={`text-white ${fontClass} hover:opacity-80 focus:outline-none flex items-center`}
+                >
+                  <span className="mr-2">Font:</span>
+                  <div className="relative inline-block w-10 h-5 transition duration-200 ease-in-out rounded-full bg-white bg-opacity-20">
+                    <label
+                      htmlFor="font-toggle"
+                      className={`absolute left-0 w-5 h-5 transition duration-100 ease-in-out rounded-full ${
+                        fontMode === 'pixel' ? 'transform translate-x-0 bg-white' : 'transform translate-x-5 bg-gray-200'
+                      }`}
+                    ></label>
+                    <input
+                      type="checkbox"
+                      id="font-toggle"
+                      name="font-toggle"
+                      className="w-full h-full appearance-none focus:outline-none"
+                      checked={fontMode === 'lato'}
+                      onChange={toggleFontMode}
+                    />
+                  </div>
+                  <span className="ml-2">{fontMode === 'pixel' ? 'Retro' : 'Modern'}</span>
                 </button>
               </li>
             </ul>
@@ -110,7 +141,7 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection }) => {
               <li>
                 <button 
                   onClick={() => handleNavClick('home')}
-                  className="text-white font-pixel hover:opacity-80 focus:outline-none"
+                  className={`text-white ${fontClass} hover:opacity-80 focus:outline-none`}
                 >
                   Home
                 </button>
@@ -118,7 +149,7 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection }) => {
               <li>
                 <button 
                   onClick={() => handleNavClick('projects')}
-                  className="text-white font-pixel hover:opacity-80 focus:outline-none"
+                  className={`text-white ${fontClass} hover:opacity-80 focus:outline-none`}
                 >
                   Projects
                 </button>
@@ -126,7 +157,7 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection }) => {
               <li>
                 <button 
                   onClick={() => handleNavClick('resume')}
-                  className="text-white font-pixel hover:opacity-80 focus:outline-none"
+                  className={`text-white ${fontClass} hover:opacity-80 focus:outline-none`}
                 >
                   Resume
                 </button>
@@ -134,7 +165,7 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection }) => {
               <li>
                 <button 
                   onClick={() => handleNavClick('contact')}
-                  className="text-white font-pixel hover:opacity-80 focus:outline-none"
+                  className={`text-white ${fontClass} hover:opacity-80 focus:outline-none`}
                 >
                   Contact
                 </button>
@@ -142,7 +173,7 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection }) => {
               <li>
                 <Link 
                   to="/"
-                  className="text-white font-pixel hover:opacity-80 focus:outline-none"
+                  className={`text-white ${fontClass} hover:opacity-80 focus:outline-none`}
                 >
                   {hostname.includes('portfolio') ? 'Passion Portfolio' : 'Simple Resume'}
                 </Link>
@@ -150,9 +181,35 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection }) => {
               <li>
                 <button 
                   onClick={() => window.open('https://www.linkedin.com/in/lewiscmeyers/', '_blank')}
-                  className="text-white font-pixel hover:opacity-80 focus:outline-none"
+                  className={`text-white ${fontClass} hover:opacity-80 focus:outline-none`}
                 >
                   LinkedIn
+                </button>
+              </li>
+              {/* Font Toggle for Mobile */}
+              <li className="flex items-center">
+                <button
+                  onClick={toggleFontMode}
+                  className={`text-white ${fontClass} hover:opacity-80 focus:outline-none flex items-center`}
+                >
+                  <span className="mr-2">Font:</span>
+                  <div className="relative inline-block w-10 h-5 transition duration-200 ease-in-out rounded-full bg-white bg-opacity-20">
+                    <label
+                      htmlFor="font-toggle-mobile"
+                      className={`absolute left-0 w-5 h-5 transition duration-100 ease-in-out rounded-full ${
+                        fontMode === 'pixel' ? 'transform translate-x-0 bg-white' : 'transform translate-x-5 bg-gray-200'
+                      }`}
+                    ></label>
+                    <input
+                      type="checkbox"
+                      id="font-toggle-mobile"
+                      name="font-toggle-mobile"
+                      className="w-full h-full appearance-none focus:outline-none"
+                      checked={fontMode === 'lato'}
+                      onChange={toggleFontMode}
+                    />
+                  </div>
+                  <span className="ml-2">{fontMode === 'pixel' ? 'Retro' : 'Modern'}</span>
                 </button>
               </li>
             </ul>

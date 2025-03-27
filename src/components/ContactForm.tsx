@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const ContactForm: React.FC = () => {
+interface ContactFormProps {
+  fontMode?: 'pixel' | 'lato'; // Make it optional with a default
+}
+
+const ContactForm: React.FC<ContactFormProps> = ({ fontMode = 'pixel' }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
+  // Get font class based on current mode
+  const fontClass = fontMode === 'pixel' ? 'font-pixel' : 'font-lato';
+
   return (
-    <section id="contact" className="py-[130px] px-4 text-center">
+    <section id="contact" className={`py-[130px] px-4 text-center ${fontClass}`}>
       <h2 className="text-2xl md:text-3xl font-bold mb-10 text-black">Contact</h2>
       
       <div className="max-w-2xl mx-auto">
@@ -42,7 +49,7 @@ const ContactForm: React.FC = () => {
               name="name"
               placeholder="Name"
               required
-              className="w-full px-4 py-3 rounded-md border-2 border-primary-300 bg-white bg-opacity-10 text-black placeholder-grey placeholder-opacity-70 focus:outline-none focus:ring-2 focus:ring-primary-300 font-pixel text-sm"
+              className={`w-full px-4 py-3 rounded-md border-2 border-primary-300 bg-white bg-opacity-10 text-black placeholder-grey placeholder-opacity-70 focus:outline-none focus:ring-2 focus:ring-primary-300 ${fontClass} text-sm`}
             />
           </div>
           
@@ -52,7 +59,7 @@ const ContactForm: React.FC = () => {
               name="email"
               placeholder="Your email"
               required
-              className="w-full px-4 py-3 rounded-md border-2 border-primary-300 bg-white bg-opacity-10 text-black placeholder-grey placeholder-opacity-70 focus:outline-none focus:ring-2 focus:ring-primary-300 font-pixel text-sm"
+              className={`w-full px-4 py-3 rounded-md border-2 border-primary-300 bg-white bg-opacity-10 text-black placeholder-grey placeholder-opacity-70 focus:outline-none focus:ring-2 focus:ring-primary-300 ${fontClass} text-sm`}
             />
           </div>
           
@@ -62,7 +69,7 @@ const ContactForm: React.FC = () => {
               name="subject"
               placeholder="Subject"
               required
-              className="w-full px-4 py-3 rounded-md border-2 border-primary-300 bg-white bg-opacity-10 text-black placeholder-grey placeholder-opacity-70 focus:outline-none focus:ring-2 focus:ring-primary-300 font-pixel text-sm"
+              className={`w-full px-4 py-3 rounded-md border-2 border-primary-300 bg-white bg-opacity-10 text-black placeholder-grey placeholder-opacity-70 focus:outline-none focus:ring-2 focus:ring-primary-300 ${fontClass} text-sm`}
             />
           </div>
           
@@ -72,7 +79,7 @@ const ContactForm: React.FC = () => {
               placeholder="Message..."
               required
               rows={8}
-              className="w-full px-4 py-3 rounded-md border-2 border-primary-300 bg-white bg-opacity-10 text-black placeholder-grey placeholder-opacity-70 focus:outline-none focus:ring-2 focus:ring-primary-300 font-pixel text-sm resize-none"
+              className={`w-full px-4 py-3 rounded-md border-2 border-primary-300 bg-white bg-opacity-10 text-black placeholder-grey placeholder-opacity-70 focus:outline-none focus:ring-2 focus:ring-primary-300 ${fontClass} text-sm resize-none`}
             />
           </div>
           
@@ -80,20 +87,20 @@ const ContactForm: React.FC = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full py-3 px-6 bg-primary-600 hover:bg-primary-700 text-black rounded-md transition-colors duration-300 font-pixel text-sm md:text-base disabled:opacity-70"
+              className={`w-full py-3 px-6 bg-primary-600 hover:bg-primary-700 text-black rounded-md transition-colors duration-300 ${fontClass} text-sm md:text-base disabled:opacity-70`}
             >
               {isSubmitting ? 'Submitting...' : 'Submit'}
             </button>
           </div>
           
           {submitStatus === 'success' && (
-            <div className="bg-green-600 bg-opacity-80 text-white py-2 px-4 rounded-md font-pixel text-sm animate-pulse">
+            <div className={`bg-green-600 bg-opacity-80 text-white py-2 px-4 rounded-md ${fontClass} text-sm animate-pulse`}>
               Message sent! Thanks for reaching out.
             </div>
           )}
           
           {submitStatus === 'error' && (
-            <div className="bg-red-600 bg-opacity-80 text-white py-2 px-4 rounded-md font-pixel text-sm">
+            <div className={`bg-red-600 bg-opacity-80 text-white py-2 px-4 rounded-md ${fontClass} text-sm`}>
               Something went wrong. Please try again.
             </div>
           )}

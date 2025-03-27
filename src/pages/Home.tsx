@@ -8,6 +8,7 @@ const Home: React.FC = () => {
   const resumeContentRef = useRef<HTMLDivElement>(null);
   const bottomRef = useRef<HTMLDivElement>(null);
   const [floatingIcons, setFloatingIcons] = useState<FloatingIcon[]>([]);
+  const [fontMode, setFontMode] = useState<'pixel' | 'lato'>('pixel');
 
   interface FloatingIcon {
     top: string;
@@ -37,55 +38,55 @@ const Home: React.FC = () => {
   ];
   
   useEffect(() => {
-  const createRelativePositions = (isMobile: boolean): FloatingIcon[] => {
-    const basePositions = [
-      // Top row
-      { top: '35%', left: '38%' },
-      { top: '35%', left: '62%' },
+    const createRelativePositions = (isMobile: boolean): FloatingIcon[] => {
+      const basePositions = [
+        // Top row
+        { top: '35%', left: '38%' },
+        { top: '35%', left: '62%' },
+        
+        // Middle sides
+        { top: '50%', left: '30%' },
+        { top: '50%', left: '70%' },
+        
+        // Bottom row
+        { top: '65%', left: '38%' },
+        { top: '65%', left: '62%' },
+        
+        // Extra positions
+        { top: '42%', left: '32%' },
+        { top: '42%', left: '68%' },
+        { top: '58%', left: '32%' },
+        { top: '58%', left: '68%' },
+      ];
       
-      // Middle sides
-      { top: '50%', left: '30%' },
-      { top: '50%', left: '70%' },
-      
-      // Bottom row
-      { top: '65%', left: '38%' },
-      { top: '65%', left: '62%' },
-      
-      // Extra positions
-      { top: '42%', left: '32%' },
-      { top: '42%', left: '68%' },
-      { top: '58%', left: '32%' },
-      { top: '58%', left: '68%' },
-    ];
+      return basePositions.map((pos, index) => ({
+        ...pos,
+        size: isMobile ? '34px' : `${55 + (index % 4) * 5}px`,
+        color: [
+          'rgba(186, 85, 211, 0.8)',
+          'rgba(138, 43, 226, 0.8)',
+          'rgba(75, 0, 130, 0.8)'
+        ][index % 3],
+        // Vary animation timing for more natural movement
+        animationDuration: `${6 + (index % 6)}s`,
+        animationDelay: `${index * 0.7}s`
+      }));
+    };
     
-    return basePositions.map((pos, index) => ({
-      ...pos,
-      size: isMobile ? '34px' : `${55 + (index % 4) * 5}px`,
-      color: [
-        'rgba(186, 85, 211, 0.8)',
-        'rgba(138, 43, 226, 0.8)',
-        'rgba(75, 0, 130, 0.8)'
-      ][index % 3],
-      // Vary animation timing for more natural movement
-      animationDuration: `${6 + (index % 6)}s`,
-      animationDelay: `${index * 0.7}s`
-    }));
-  };
-  
-  const handleResize = () => {
-    if (window.innerWidth < 768) {
-      setFloatingIcons(createRelativePositions(true));
-    } else {
-      setFloatingIcons(createRelativePositions(false));
-    }
-  };
-  
-  handleResize();
-  
-  window.addEventListener('resize', handleResize);
-  
-  return () => window.removeEventListener('resize', handleResize);
-}, []);
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setFloatingIcons(createRelativePositions(true));
+      } else {
+        setFloatingIcons(createRelativePositions(false));
+      }
+    };
+    
+    handleResize();
+    
+    window.addEventListener('resize', handleResize);
+    
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -98,6 +99,21 @@ const Home: React.FC = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  // Load font preference from localStorage on component mount
+  useEffect(() => {
+    const savedFontMode = localStorage.getItem('fontMode');
+    if (savedFontMode === 'lato') {
+      setFontMode('lato');
+    }
+  }, []);
+  
+  // Toggle font mode and save preference to localStorage
+  const toggleFontMode = () => {
+    const newMode = fontMode === 'pixel' ? 'lato' : 'pixel';
+    setFontMode(newMode);
+    localStorage.setItem('fontMode', newMode);
+  };
 
   const handleOnType = () => {
     if (bottomRef.current) {
@@ -115,9 +131,12 @@ const Home: React.FC = () => {
     }
   };
 
+  // Define font classes based on current mode
+  const fontClass = fontMode === 'pixel' ? 'font-pixel' : 'font-lato';
+  
   return (
-    <div className={`min-h-screen bg-gradient-to-b from-primary-300 via-primary-200 to-primary-100 font-pixel text-white transition-opacity duration-1000 ${!isLoading ? 'opacity-100' : 'opacity-0'}`}>
-      <Navbar scrollToSection={scrollToSection} />
+    <div className={`min-h-screen bg-gradient-to-b from-primary-300 via-primary-200 to-primary-100 ${fontMode === 'pixel' ? 'font-pixel' : 'font-lato'} text-white transition-opacity duration-1000 ${!isLoading ? 'opacity-100' : 'opacity-0'}`}>
+      <Navbar scrollToSection={scrollToSection} fontMode={fontMode} toggleFontMode={toggleFontMode} />
 
       {/* Hero Section */}
       <section id="home" className="pt-20 px-4 min-h-screen flex flex-col items-center justify-center relative">
@@ -220,7 +239,7 @@ const Home: React.FC = () => {
     </div>
       </section>
 
-      {/* Resume Section */}
+      {/* Resume Section - We keep font-lato here regardless of toggle state */}
       <section id="resume" className="py-28 px-4 font-lato" ref={resumeContentRef}>
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-10 text-black">Resume</h2>
         
@@ -383,8 +402,8 @@ const Home: React.FC = () => {
           }
         `}
       </style>
-        <ContactForm />
-        <footer className="bg-gray-800 text-white py-8 px-4 text-center font-pixel">
+        <ContactForm fontMode={fontMode} />
+        <footer className={`bg-gray-800 text-white py-8 px-4 text-center ${fontMode === 'pixel' ? 'font-pixel' : 'font-lato'}`}>
         <p className="mb-4">© {new Date().getFullYear()} Lewis Meyers. All rights reserved.</p>
         <div className="flex justify-center space-x-4">
           <a 
