@@ -206,7 +206,8 @@ const Home: React.FC = () => {
           </div>
           <button 
             onClick={() => window.open('https://dreamy-xi.vercel.app/', '_blank')} 
-            className="pixel-btn border-black text-black"
+            className={`px-4 py-2 border-2 border-black rounded transition-all duration-300 
+            hover:bg-white hover:bg-opacity-20 ${fontMode === 'pixel' ? 'font-pixel' : 'font-lato'} text-black`}
           >
             View Project
           </button>
@@ -232,7 +233,8 @@ const Home: React.FC = () => {
             <span className="px-2 py-1 bg-primary-600 rounded-full text-xs">Howler.js</span>
           </div>
           <a href="https://soke2x.vercel.app/" target="_blank" rel="noopener noreferrer">
-            <button className="pixel-btn border-black text-black">View Project</button>
+            <button className={`px-4 py-2 border-2 border-black rounded transition-all duration-300 
+            hover:bg-white hover:bg-opacity-20 ${fontMode === 'pixel' ? 'font-pixel' : 'font-lato'} text-black`}>View Project</button>
           </a>
         </div>
       </div>
