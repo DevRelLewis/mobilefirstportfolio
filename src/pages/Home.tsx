@@ -167,11 +167,13 @@ const Home: React.FC = () => {
         })}
         </div>
         <div className="z-10 text-center">
-          <img 
-            src="./lewis_8bit.png" 
-            alt="Lewis Meyers" 
-            className="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-white object-cover shadow-lg mx-auto"
-          />
+        <img 
+          src={fontMode === 'pixel' ? "./lewis_8bit.png" : "./lewis_ghibli.png"}
+          alt="Lewis Meyers" 
+          className="w-36 h-36 md:w-48 md:h-48 rounded-full border-4 border-white object-cover object-center shadow-lg mx-auto transition-opacity duration-300"
+          style={{ objectPosition: "center 34.5%" }} // This moves the image up within the circle
+          key={fontMode}
+        />
           <h1 className="mt-3 text-xl md:text-2xl font-bold text-black">Lewis Meyers</h1>
           <p className="mt-2 text-base md:text-lg max-w-md mx-auto text-black">
             Frontend Developer
