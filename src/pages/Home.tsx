@@ -186,64 +186,94 @@ const Home: React.FC = () => {
 
       <section id="projects" className="py-32 px-4 text-center">
         <h2 className="text-2xl md:text-3xl font-bold mb-10 text-black">My Projects</h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-      <div className="bg-white bg-opacity-10 rounded-lg overflow-hidden shadow-lg border-2 border-white border-opacity-20 backdrop-blur-sm transition-transform duration-300 hover:scale-105">
-        <div className="h-40 bg-primary-500 flex items-center justify-center">
-        <img 
-            src="/dream-net.png" 
-            alt="Dream Net AI Screenshot" 
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="p-5">
-          <h3 className="text-lg md:text-xl mb-2">Dream Net AI</h3>
-          <p className="text-white text-opacity-80 text-sm mb-4">
-            AI dream interpreter using Next.js and ChatGPT, trained on specialized dream data with 25% improved accuracy.
-          </p>
-          <div className="flex flex-wrap gap-2 mb-4 justify-center">
-            <span className="px-2 py-1 bg-primary-600 rounded-full text-xs">Next.js</span>
-            <span className="px-2 py-1 bg-primary-600 rounded-full text-xs">ChatGPT</span>
-            <span className="px-2 py-1 bg-primary-600 rounded-full text-xs">Supabase</span>
-          </div>
-          <button 
-            onClick={() => window.open('https://dreamy-xi.vercel.app/', '_blank')} 
-            className={`px-4 py-2 border-2 border-black rounded transition-all duration-300 
-            hover:bg-white hover:bg-opacity-20 ${fontMode === 'pixel' ? 'font-pixel' : 'font-lato'} text-black`}
-          >
-            View Project
-          </button>
-        </div>
-      </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto [&>*:nth-child(3)]:md:col-span-2 [&>*:nth-child(3)]:md:justify-self-center [&>*:nth-child(3)]:md:max-w-xl">
+            <div className="bg-white bg-opacity-10 rounded-lg overflow-hidden shadow-lg border-2 border-white border-opacity-20 backdrop-blur-sm transition-transform duration-300 hover:scale-105">
+              <div className="h-40 bg-primary-500 flex items-center justify-center">
+              <img 
+                  src="/dream-net.png" 
+                  alt="Dream Net AI Screenshot" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-5">
+                <h3 className="text-lg md:text-xl mb-2">Dream Net AI</h3>
+                <p className="text-white text-opacity-80 text-sm mb-4">
+                  AI dream interpreter using Next.js and ChatGPT, trained on specialized dream data with 25% improved accuracy.
+                </p>
+                <div className="flex flex-wrap gap-2 mb-4 justify-center">
+                  <span className="px-2 py-1 bg-primary-600 rounded-full text-xs">Next.js</span>
+                  <span className="px-2 py-1 bg-primary-600 rounded-full text-xs">ChatGPT</span>
+                  <span className="px-2 py-1 bg-primary-600 rounded-full text-xs">Supabase</span>
+                </div>
+                <button 
+                  onClick={() => window.open('https://dreamy-xi.vercel.app/', '_blank')} 
+                  className={`px-4 py-2 border-2 border-black rounded transition-all duration-300 
+                  hover:bg-white hover:bg-opacity-20 ${fontMode === 'pixel' ? 'font-pixel' : 'font-lato'} text-black`}
+                >
+                  View Project
+                </button>
+              </div>
+            </div>
 
-      <div className="bg-white bg-opacity-10 rounded-lg overflow-hidden shadow-lg border-2 border-white border-opacity-20 backdrop-blur-sm transition-transform duration-300 hover:scale-105">
-        <div className="h-40 bg-primary-500 flex items-center justify-center">
-        <img 
-            src="/sokeswig.png" 
-            alt="Soke2x Smoothie Shop Screenshot" 
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="p-5">
-          <h3 className="text-lg md:text-xl mb-2">Soke2x Smoothie Shop</h3>
-          <p className="text-white text-opacity-80 text-sm mb-4">
-            Interactive Next.js website for a smoothie brand featuring 3D models, animations, and custom audio visualizers for an immersive user experience.
-          </p>
-          <div className="flex flex-wrap gap-2 mb-4 justify-center">
-            <span className="px-2 py-1 bg-primary-600 rounded-full text-xs">Next.js</span>
-            <span className="px-2 py-1 bg-primary-600 rounded-full text-xs">Three.js</span>
-            <span className="px-2 py-1 bg-primary-600 rounded-full text-xs">Howler.js</span>
+            
+
+            <div className="bg-white bg-opacity-10 rounded-lg overflow-hidden shadow-lg border-2 border-white border-opacity-20 backdrop-blur-sm transition-transform duration-300 hover:scale-105">
+              <div className="h-40 bg-primary-500 flex items-center justify-center">
+              <img 
+                  src="/sokeswig.png" 
+                  alt="Soke2x Smoothie Shop Screenshot" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-5">
+                <h3 className="text-lg md:text-xl mb-2">Soke2x Smoothie Shop</h3>
+                <p className="text-white text-opacity-80 text-sm mb-4">
+                  Interactive Next.js website for a smoothie brand featuring 3D models, animations, and custom audio visualizers for an immersive user experience.
+                </p>
+                <div className="flex flex-wrap gap-2 mb-4 justify-center">
+                  <span className="px-2 py-1 bg-primary-600 rounded-full text-xs">Next.js</span>
+                  <span className="px-2 py-1 bg-primary-600 rounded-full text-xs">Three.js</span>
+                  <span className="px-2 py-1 bg-primary-600 rounded-full text-xs">Howler.js</span>
+                </div>
+                <a href="https://soke2x.vercel.app/" target="_blank" rel="noopener noreferrer">
+                  <button className={`px-4 py-2 border-2 border-black rounded transition-all duration-300 
+                  hover:bg-white hover:bg-opacity-20 ${fontMode === 'pixel' ? 'font-pixel' : 'font-lato'} text-black`}>View Project</button>
+                </a>
+              </div>
+            </div>
+
+            <div className="bg-white bg-opacity-10 rounded-lg overflow-hidden shadow-lg border-2 border-white border-opacity-20 backdrop-blur-sm transition-transform duration-300 hover:scale-105">
+              <div className="h-40 bg-primary-500 flex items-center justify-center">
+              <img 
+                  src="/topshelfintel.png" 
+                  alt="Soke2x Smoothie Shop Screenshot" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              
+              <div className="p-5">
+                <h3 className="text-lg md:text-xl mb-2">Top Shelf Intelligence</h3>
+                <p className="text-white text-opacity-80 text-sm mb-4">
+                  Professional intelligence and risk management firm website built with Next.js, featuring secure client portals, file management, and comprehensive protection services showcase.
+                </p>
+                <div className="flex flex-wrap gap-2 mb-4 justify-center">
+                  <span className="px-2 py-1 bg-primary-600 rounded-full text-xs">Next.js</span>
+                  <span className="px-2 py-1 bg-primary-600 rounded-full text-xs">TypeScript</span>
+                  <span className="px-2 py-1 bg-primary-600 rounded-full text-xs">Tailwind CSS</span>
+                  <span className="px-2 py-1 bg-primary-600 rounded-full text-xs">Supabase</span>
+                </div>
+                <a href="https://topshelfintel.vercel.app/" target="_blank" rel="noopener noreferrer">
+                  <button className={`px-4 py-2 border-2 border-black rounded transition-all duration-300 
+                  hover:bg-white hover:bg-opacity-20 ${fontMode === 'pixel' ? 'font-pixel' : 'font-lato'} text-black`}>View Project</button>
+                </a>
+              </div>
+            </div>
           </div>
-          <a href="https://soke2x.vercel.app/" target="_blank" rel="noopener noreferrer">
-            <button className={`px-4 py-2 border-2 border-black rounded transition-all duration-300 
-            hover:bg-white hover:bg-opacity-20 ${fontMode === 'pixel' ? 'font-pixel' : 'font-lato'} text-black`}>View Project</button>
-          </a>
-        </div>
-      </div>
-    </div>
+
+        
+    
       </section>
 
-      {/* Resume Section - We keep font-lato here regardless of toggle state */}
       <section id="resume" className="py-28 px-4 font-lato" ref={resumeContentRef}>
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-10 text-black">Resume</h2>
         
