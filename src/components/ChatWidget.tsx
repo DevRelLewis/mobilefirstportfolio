@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
 interface ChatMessage {
   role: 'user' | 'assistant';
@@ -10,18 +10,20 @@ interface ChatMessage {
 
 interface ChatWidgetProps {
   fontMode?: 'pixel' | 'lato';
+  /** Absolute or relative URL. Prop wins over envs. */
   apiEndpoint?: string;
 }
 
-const ChatWidget: React.FC<ChatWidgetProps> = ({ 
-  fontMode = 'pixel', 
-  apiEndpoint = 'http://localhost:3000/api/chat' 
+const ChatWidget: React.FC<ChatWidgetProps> = ({
+  fontMode = 'pixel',
+  apiEndpoint, // no localhost default anymore
 }) => {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: 'assistant',
-      content: "Hi! I'm Lewis's portfolio assistant. Ask me about his experience, projects, or technical skills!"
-    }
+      content:
+        "Hi! I'm Lewis's portfolio assistant. Ask me about his experience, projects, or technical skills!",
+    },
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -30,32 +32,53 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({
 
   const fontClass = fontMode === 'pixel' ? 'font-pixel' : 'font-lato';
 
+  // Resolve endpoint with clear precedence:
+  // 1) Prop (absolute or relative)
+  // 2) Public env base (Vite or Next.js) + '/api/chat'
+  // 3) Same-origin '/api/chat'
+  const resolvedEndpoint = useMemo(() => {
+    const baseFromVite =
+      typeof import.meta !== 'undefined' &&
+      (import.meta as any)?.env?.VITE_CHAT_API_BASE;
+    const baseFromNext =
+      typeof process !== 'undefined' && (process as any)?.env?.NEXT_PUBLIC_CHAT_API_BASE;
+
+    const publicBase = (baseFromVite || baseFromNext || '') as string;
+
+    if (apiEndpoint && apiEndpoint.trim()) {
+      return apiEndpoint.trim();
+    }
+    if (publicBase) {
+      return `${publicBase.replace(/\/$/, '')}/api/chat`;
+    }
+    // default to same-origin path; never hard-code localhost
+    return '/api/chat';
+  }, [apiEndpoint]);
+
   const sendMessage = async () => {
     if (!input.trim() || isLoading) return;
 
+    const text = input.trim();
+
     const userMessage: ChatMessage = {
       role: 'user',
-      content: input.trim()
+      content: text,
     };
 
-    setMessages(prev => [...prev, userMessage]);
+    setMessages((prev) => [...prev, userMessage]);
     setInput('');
     setIsLoading(true);
 
     try {
-      const response = await fetch(apiEndpoint, {
+      const response = await fetch(resolvedEndpoint, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          message: input.trim(),
+          message: text,
           config: {
             top_k: 3,
-            llm: {
-              temperature: 0.1
-            }
-          }
+            llm: { temperature: 0.1 },
+          },
         }),
       });
 
@@ -64,29 +87,32 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({
       }
 
       const data = await response.json();
-      
+
       const assistantMessage: ChatMessage = {
         role: 'assistant',
-        content: data.answer || 'Sorry, I encountered an error processing your request.',
+        content:
+          data.answer ||
+          'Sorry, I encountered an error processing your request.',
         citations: data.citations || [],
-        confidence: data.confidence || 0,
-        trace: data._trace
+        confidence: data.confidence ?? 0,
+        trace: data._trace,
       };
 
-      setMessages(prev => [...prev, assistantMessage]);
+      setMessages((prev) => [...prev, assistantMessage]);
     } catch (error) {
       console.error('Chat error:', error);
       const errorMessage: ChatMessage = {
         role: 'assistant',
-        content: 'Sorry, I had trouble connecting to my knowledge base. Please try again.'
+        content:
+          'Sorry, I had trouble connecting to my knowledge base. Please try again.',
       };
-      setMessages(prev => [...prev, errorMessage]);
+      setMessages((prev) => [...prev, errorMessage]);
     } finally {
       setIsLoading(false);
     }
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       sendMessage();
@@ -114,6 +140,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({
         <button
           onClick={() => setIsExpanded(false)}
           className="text-white hover:text-gray-200"
+          aria-label="Close chat"
         >
           ✕
         </button>
@@ -122,7 +149,10 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({
       {/* Messages */}
       <div className="flex-1 overflow-y-auto p-3 space-y-3">
         {messages.map((message, index) => (
-          <div key={index} className={`${message.role === 'user' ? 'text-right' : 'text-left'}`}>
+          <div
+            key={index}
+            className={message.role === 'user' ? 'text-right' : 'text-left'}
+          >
             <div
               className={`inline-block max-w-[80%] p-2 rounded-lg ${fontClass} text-sm ${
                 message.role === 'user'
@@ -131,32 +161,32 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({
               }`}
             >
               <div>{message.content}</div>
-              
+
               {/* Citations */}
               {message.citations && message.citations.length > 0 && (
                 <div className="mt-1 text-xs opacity-75">
                   Sources: {message.citations.join(', ')}
                 </div>
               )}
-              
+
               {/* Confidence */}
-              {message.confidence !== undefined && (
+              {typeof message.confidence === 'number' && (
                 <div className="mt-1 text-xs opacity-75">
-                  Confidence: {(message.confidence * 100).toFixed(0)}%
+                  Confidence: {Math.round((message.confidence ?? 0) * 100)}%
                 </div>
               )}
-              
+
               {/* Debug Trace Toggle */}
               {message.trace && (
                 <button
-                  onClick={() => setShowTrace(!showTrace)}
+                  onClick={() => setShowTrace((v) => !v)}
                   className="mt-1 text-xs underline opacity-75 hover:opacity-100"
                 >
                   {showTrace ? 'Hide' : 'Show'} Debug Info
                 </button>
               )}
             </div>
-            
+
             {/* Debug Trace */}
             {showTrace && message.trace && (
               <div className="mt-2 p-2 bg-gray-50 rounded text-xs font-mono max-h-32 overflow-y-auto">
@@ -165,15 +195,23 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({
             )}
           </div>
         ))}
-        
+
         {/* Loading indicator */}
         {isLoading && (
           <div className="text-left">
-            <div className={`inline-block bg-gray-100 text-gray-800 p-2 rounded-lg ${fontClass} text-sm`}>
+            <div
+              className={`inline-block bg-gray-100 text-gray-800 p-2 rounded-lg ${fontClass} text-sm`}
+            >
               <div className="flex items-center space-x-1">
-                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
-                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" />
+                <div
+                  className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                  style={{ animationDelay: '0.1s' }}
+                />
+                <div
+                  className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                  style={{ animationDelay: '0.2s' }}
+                />
               </div>
             </div>
           </div>
@@ -187,7 +225,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            onKeyPress={handleKeyPress}
+            onKeyDown={handleKeyDown}
             placeholder="Ask about Lewis's experience..."
             className={`flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-300 ${fontClass}`}
             disabled={isLoading}
