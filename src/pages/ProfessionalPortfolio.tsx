@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './PassionLink.css';
-import ChatWidget from '../components/ChatWidget';'../components/ChatWidget';
+import ChatWidget from '../components/ChatWidget';
 
 const ProfessionalPortfolio: React.FC = () => {
   const resumeContentRef = useRef<HTMLDivElement>(null);
