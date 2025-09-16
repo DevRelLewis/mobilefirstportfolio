@@ -292,7 +292,10 @@ const ProfessionalPortfolio: React.FC = () => {
         </div>
         
       </footer>
-      <ChatWidget fontMode="lato" />
+      <ChatWidget 
+        fontMode="lato" 
+        apiEndpoint="https://chatbot-bsmjiximj-devrellewis-projects.vercel.app/api/chat" 
+      />
     </div>
   );
 };
