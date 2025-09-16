@@ -294,7 +294,7 @@ const ProfessionalPortfolio: React.FC = () => {
       </footer>
       <ChatWidget 
         fontMode="lato" 
-        apiEndpoint="https://chatbot-bsmjiximj-devrellewis-projects.vercel.app/api/chat" 
+        apiEndpoint="https://chatbot-api-jet.vercel.app/api/chat" 
       />
     </div>
   );
