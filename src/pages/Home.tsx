@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Navbar from '../components/Navbar';
 import ContactForm from '../components/ContactForm';
 import { Link } from 'react-router-dom';
+import ChatWidget from '../components/ChatWidget';
 
 const Home: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -462,6 +463,10 @@ const Home: React.FC = () => {
           </Link>
         </div>
       </footer>
+      <ChatWidget 
+        fontMode="lato" 
+        apiEndpoint="https://chatbot-api-jet.vercel.app/api/chat" 
+      />
     </div>
   );
 };
