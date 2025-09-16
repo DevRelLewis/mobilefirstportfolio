@@ -126,7 +126,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({
           onClick={() => setIsExpanded(true)}
           className={`bg-primary-600 hover:bg-primary-700 text-white p-4 rounded-full shadow-lg transition-all duration-300 ${fontClass}`}
         >
-          💬 Chat with Lewis's AI
+          Ask Lewis's Assistant!
         </button>
       </div>
     );
