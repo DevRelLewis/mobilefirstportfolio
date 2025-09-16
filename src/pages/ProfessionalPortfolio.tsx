@@ -1,7 +1,7 @@
-// src/pages/ProfessionalPortfolio.tsx
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './PassionLink.css';
+import ChatWidget from '../components/ChatWidget';'../components/ChatWidget';
 
 const ProfessionalPortfolio: React.FC = () => {
   const resumeContentRef = useRef<HTMLDivElement>(null);
@@ -267,30 +267,32 @@ const ProfessionalPortfolio: React.FC = () => {
 
       {/* Footer */}
       <footer className="bg-gray-800 text-white py-8 px-4 text-center">
-  <p className="mb-4">© {new Date().getFullYear()} Lewis Meyers. All rights reserved.</p>
-  <div className="flex justify-center items-center space-x-4">
-    <a 
-      href="https://www.linkedin.com/in/lewiscmeyers/" 
-      target="_blank" 
-      rel="noopener noreferrer"
-      className="text-gray-300 hover:text-white transition-colors py-1"
-    >
-      LinkedIn
-    </a>
-    <a 
-      href="mailto:meyerslewis193@gmail.com" 
-      className="text-gray-300 hover:text-white transition-colors py-1"
-    >
-      Email
-    </a>
-    <Link 
-      to="/welcome"
-      className="text-purple-500 hover:text-purple-400 font-bold transition-all duration-300 passion-link-footer py-1"
-    >
-      Passion Portfolio
-    </Link>
-  </div>
-</footer>
+        <p className="mb-4">© {new Date().getFullYear()} Lewis Meyers. All rights reserved.</p>
+        <div className="flex justify-center items-center space-x-4">
+          <a 
+            href="https://www.linkedin.com/in/lewiscmeyers/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-gray-300 hover:text-white transition-colors py-1"
+          >
+            LinkedIn
+          </a>
+          <a 
+            href="mailto:meyerslewis193@gmail.com" 
+            className="text-gray-300 hover:text-white transition-colors py-1"
+          >
+            Email
+          </a>
+          <Link 
+            to="/welcome"
+            className="text-purple-500 hover:text-purple-400 font-bold transition-all duration-300 passion-link-footer py-1"
+          >
+            Passion Portfolio
+          </Link>
+        </div>
+        
+      </footer>
+      <ChatWidget fontMode="lato" />
     </div>
   );
 };

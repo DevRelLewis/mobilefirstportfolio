@@ -1,0 +1,66 @@
+[
+  {
+    "doc_id": "exp_teachstone",
+    "title": "Teachstone Experience",
+    "content": "Lewis Meyers worked as AI Frontend/Tier 3 Engineer at Teachstone from June 2023 to Present. Designed and refined Figma and React/TypeScript UIs, improving reporting tool accessibility and UX, boosting company-wide adoption by 40%. Resolved 10-15 monthly Salesforce tickets and automated Java/SQL workflows, cutting turnaround time by 30% and enhancing AI tool efficiency by 25%.",
+    "metadata": {
+      "type": "experience",
+      "company": "teachstone",
+      "date": "2023-present",
+      "effective_date": "2023-06-01"
+    }
+  },
+  {
+    "doc_id": "exp_hyperlink", 
+    "title": "Hyperlink AI Platform Engineer",
+    "content": "Lewis worked as AI Platform Engineer at Hyperlink in SF Bay Area from Jan 2024 to May 2024. Raised $3.2M at SXSW 2024 through an SVP pitch, delivering the AI speech generator MVP on time with 50+ users engaging over 5 minutes each. Built TypeScript components and optimized Next.js APIs, boosting platform stability by 30%.",
+    "metadata": {
+      "type": "experience", 
+      "company": "hyperlink",
+      "date": "2024",
+      "effective_date": "2024-01-01"
+    }
+  },
+  {
+    "doc_id": "project_dreamnet",
+    "title": "Dream Net AI Project",
+    "content": "Built an AI dream interpreter using Next.js and ChatGPT, trained on specialized dream data with 25% improved accuracy during a 30-tester beta. Implemented Supabase for user authentication and backend services, ensuring real-time data management and secure access.",
+    "metadata": {
+      "type": "project",
+      "tech": "nextjs",
+      "category": "ai",
+      "effective_date": "2024-01-01"
+    }
+  },
+  {
+    "doc_id": "project_soke2x",
+    "title": "Soke2x Smoothie Shop",
+    "content": "Designed a 3D ecommerce site with Three.js and Figma UI/UX, growing smoothie shop orders from 5-10 daily to 15-20. Integrated Node.js for optimized navigation and email APIs, cutting response times by 50% and doubling order volume in 12 months.",
+    "metadata": {
+      "type": "project",
+      "tech": "threejs",
+      "category": "ecommerce",
+      "effective_date": "2023-02-01"
+    }
+  },
+  {
+    "doc_id": "skills_frontend",
+    "title": "Frontend Technical Skills",
+    "content": "Lewis has experience with JavaScript, TypeScript, Next.js, React, Bootstrap, HTML5/CSS3, TailwindCSS, MantineCSS. Also proficient with Git, GitHub, Docker, Jira, and Visual Studio Code.",
+    "metadata": {
+      "type": "skills",
+      "category": "technical",
+      "effective_date": "2023-01-01"
+    }
+  },
+  {
+    "doc_id": "contact_info",
+    "title": "Contact Information",
+    "content": "Lewis Meyers can be contacted at meyerslewis193@gmail.com or through LinkedIn at linkedin.com/in/lewiscmeyers. His portfolio website is lewismeyers.dev.",
+    "metadata": {
+      "type": "contact",
+      "category": "personal",
+      "effective_date": "2023-01-01"
+    }
+  }
+]
