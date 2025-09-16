@@ -133,7 +133,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({
   }
 
   return (
-    <div className="fixed bottom-4 right-4 w-96 h-96 bg-white rounded-lg shadow-xl border-2 border-gray-300 flex flex-col z-50">
+    <div className="fixed bottom-4 right-4 w-96 h-96 bg-white text-gray-800 rounded-lg shadow-xl border-2 border-gray-300 flex flex-col z-50">
       {/* Header */}
       <div className="bg-primary-600 text-white p-3 rounded-t-lg flex justify-between items-center">
         <h3 className={`font-bold ${fontClass}`}>Lewis's Portfolio Assistant</h3>
@@ -227,7 +227,9 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Ask about Lewis's experience..."
-            className={`flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-300 ${fontClass}`}
+            className={`flex-1 bg-white text-gray-800 placeholder-gray-500 caret-purple-600
+                        border border-gray-300 rounded-lg px-3 py-2 text-sm
+                        focus:outline-none focus:ring-2 focus:ring-primary-300 ${fontClass}`}
             disabled={isLoading}
           />
           <button
