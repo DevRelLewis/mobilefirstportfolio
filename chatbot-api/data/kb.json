@@ -1,66 +1,248 @@
-[
-  {
-    "doc_id": "exp_teachstone",
-    "title": "Teachstone Experience",
-    "content": "Lewis Meyers worked as AI Frontend/Tier 3 Engineer at Teachstone from June 2023 to Present. Designed and refined Figma and React/TypeScript UIs, improving reporting tool accessibility and UX, boosting company-wide adoption by 40%. Resolved 10-15 monthly Salesforce tickets and automated Java/SQL workflows, cutting turnaround time by 30% and enhancing AI tool efficiency by 25%.",
-    "metadata": {
-      "type": "experience",
-      "company": "teachstone",
-      "date": "2023-present",
-      "effective_date": "2023-06-01"
+{
+  "documents": [
+    {
+      "doc_id": "contact_info",
+      "title": "Contact Information",
+      "content": "Lewis Meyers can be reached at meyersLewis193@gmail.com or by phone at (571) 294-9222. Professional profiles include GitHub at Github.com/DevRelLewis, portfolio website at LewisMeyers.dev, and LinkedIn at Linkedin.com/in/LewisCMeyers.",
+      "metadata": {
+        "type": "contact",
+        "category": "personal_info",
+        "effective_date": "2025-01-01"
+      }
+    },
+    {
+      "doc_id": "professional_summary",
+      "title": "Professional Summary",
+      "content": "Army Veteran and Full Stack Engineer with experience building AI-driven applications and customer-first platforms. Skilled in React, Next.js, TypeScript, Python, and PostgreSQL, with hands-on exposure to prompt engineering, RAG workflows, and integrating AI APIs into production systems. Adept at developing scalable backends on AWS, optimizing front-end performance, and collaborating cross-functionally to deliver end-to-end features. Passionate about using technology and AI to simplify complex processes and create meaningful user impact in fast-paced startup environments.",
+      "metadata": {
+        "type": "summary",
+        "category": "overview",
+        "effective_date": "2025-01-01"
+      }
+    },
+    {
+      "doc_id": "skills_languages",
+      "title": "Programming Languages and Frameworks",
+      "content": "Proficient in Python, JavaScript including React, TypeScript, and Next.js, HTML, SQL, Bootstrap, CSS, TailwindCSS, Mantine, and WordPress. Familiar with Ruby. Strong foundation in modern web development frameworks and styling libraries.",
+      "metadata": {
+        "type": "skills",
+        "category": "technical",
+        "subcategory": "languages",
+        "effective_date": "2025-01-01"
+      }
+    },
+    {
+      "doc_id": "skills_ai_ml",
+      "title": "AI and Machine Learning Skills",
+      "content": "Experience with prompt engineering and exposure to RAG workflows. Hands-on work integrating AI APIs into production systems and developing AI-driven applications.",
+      "metadata": {
+        "type": "skills",
+        "category": "technical",
+        "subcategory": "ai_ml",
+        "effective_date": "2025-01-01"
+      }
+    },
+    {
+      "doc_id": "skills_tools",
+      "title": "Development Tools and Platforms",
+      "content": "Experienced with Visual Studio, Azure DevOps, Git, GitHub, MS SQL Server, IDLE, Air Table, Jira, GCP, SEO optimization, and AWS cloud services. Proficient in modern development workflows and collaboration tools.",
+      "metadata": {
+        "type": "skills",
+        "category": "technical",
+        "subcategory": "tools",
+        "effective_date": "2025-01-01"
+      }
+    },
+    {
+      "doc_id": "skills_product",
+      "title": "Product Development Skills",
+      "content": "Skilled in creating user stories, wireframing, providing UI/UX feedback, technical documentation, and backlog management. Strong product mindset with experience collaborating across teams.",
+      "metadata": {
+        "type": "skills",
+        "category": "technical",
+        "subcategory": "product",
+        "effective_date": "2025-01-01"
+      }
+    },
+    {
+      "doc_id": "skills_databases",
+      "title": "Database Technologies",
+      "content": "Proficient in MySQL and PostgreSQL database systems. Experience with database design, optimization, and management.",
+      "metadata": {
+        "type": "skills",
+        "category": "technical",
+        "subcategory": "databases",
+        "effective_date": "2025-01-01"
+      }
+    },
+    {
+      "doc_id": "skills_testing",
+      "title": "Testing and Quality Assurance",
+      "content": "Experienced in Test-Driven Development (TDD) and automated testing practices. Focus on code quality and reliability.",
+      "metadata": {
+        "type": "skills",
+        "category": "technical",
+        "subcategory": "testing",
+        "effective_date": "2025-01-01"
+      }
+    },
+    {
+      "doc_id": "exp_topshelf",
+      "title": "TopShelfIntelligence - Web Developer & SEO Strategist",
+      "content": "Web Developer and SEO Strategist at TopShelfIntelligence from June 2024 to September 2025. Designed and deployed a Next.js and TypeScript client portal with Supabase backend, integrating Microsoft SharePoint for secure document management, authentication, and dashboards. Implemented role-based access control and admin dashboards to support scalability, compliance, and security. Optimized site performance, responsive design, and accessibility, reducing user drop-off by 20% and boosting engagement across devices. Configured cloud hosting, DNS, and deployment pipelines, ensuring reliability and readiness for scaling client usage.",
+      "metadata": {
+        "type": "experience",
+        "category": "work_history",
+        "company": "TopShelfIntelligence",
+        "role": "Web Developer & SEO Strategist",
+        "start_date": "2024-06",
+        "end_date": "2025-09",
+        "technologies": ["Next.js", "TypeScript", "Supabase", "Microsoft SharePoint"]
+      }
+    },
+    {
+      "doc_id": "exp_teachstone",
+      "title": "Teachstone - Software Engineer & Tier 3 Engineer",
+      "content": "Software Engineer and Tier 3 Engineer at Teachstone from June 2023 to July 2025. Built and optimized TypeScript components and Next.js APIs, improving platform performance by 30% and reducing wait times for end users. Automated backend workflows with Java and SQL, cutting turnaround time by 30% and enabling smoother data flow into AI-driven reporting tools. Designed React UIs and feedback loops with product and UX teams, driving 40% adoption increases across reporting tools and growing user retention by 15%. Triaged and resolved Salesforce tickets while collaborating cross-functionally, translating client issues into scalable product requirements. Partnered with engineering on AI-enabled features, testing integrations and providing structured feedback to refine AI-driven workflows.",
+      "metadata": {
+        "type": "experience",
+        "category": "work_history",
+        "company": "Teachstone",
+        "role": "Software Engineer & Tier 3 Engineer",
+        "start_date": "2023-06",
+        "end_date": "2025-07",
+        "technologies": ["TypeScript", "Next.js", "Java", "SQL", "React", "Salesforce"]
+      }
+    },
+    {
+      "doc_id": "exp_hyperlink",
+      "title": "Hyperlink - AI Platform Engineer",
+      "content": "AI Platform Engineer at Hyperlink from January 2024 to May 2024. Delivered the MVP of an AI-powered speech generator, integrating model APIs and prompt workflows that contributed to a $3.2M raise at SXSW 2024. Developed performant React, Next.js, and TypeScript frontend features and optimized backend query handling, reducing load times by 30% for 100+ daily queries. Collaborated with product and engineering leads to define technical requirements, document APIs, and support a scalable launch. Gained hands-on exposure to LLM integration and AI product development, ensuring system reliability and alignment with user-facing use cases.",
+      "metadata": {
+        "type": "experience",
+        "category": "work_history",
+        "company": "Hyperlink",
+        "role": "AI Platform Engineer",
+        "start_date": "2024-01",
+        "end_date": "2024-05",
+        "technologies": ["React", "Next.js", "TypeScript", "LLM APIs"]
+      }
+    },
+    {
+      "doc_id": "exp_dankcoders",
+      "title": "Dank Coders - Junior Front End Developer",
+      "content": "Junior Front End Developer (Part Time Contract) at Dank Coders from February 2023 to February 2024. Designed a 3D ecommerce site using Three.js, improving mobile UX and increasing daily orders by 40%. Integrated Node.js for optimized navigation and email APIs, cutting response times by 50% and growing orders 100%. Collaborated with the client to refine order features, increasing customer satisfaction by 25% and repeat orders.",
+      "metadata": {
+        "type": "experience",
+        "category": "work_history",
+        "company": "Dank Coders",
+        "role": "Junior Front End Developer",
+        "start_date": "2023-02",
+        "end_date": "2024-02",
+        "employment_type": "part_time_contract",
+        "technologies": ["Three.js", "Node.js"]
+      }
+    },
+    {
+      "doc_id": "exp_careerkarma",
+      "title": "Career Karma - Software Engineer & Developer Advocate",
+      "content": "Software Engineer and Developer Advocate at Career Karma from September 2021 to February 2023. Hosted 150+ live sessions to gather user insights, influencing product direction and generating 200K+ impressions across platforms. Developed workshops and documentation to guide users through workflows, directing matching 100+ students with technical bootcamps. Facilitated team huddles and retrospectives, strengthening collaboration and retention within a growing product and coach team.",
+      "metadata": {
+        "type": "experience",
+        "category": "work_history",
+        "company": "Career Karma",
+        "role": "Software Engineer & Developer Advocate",
+        "start_date": "2021-09",
+        "end_date": "2023-02"
+      }
+    },
+    {
+      "doc_id": "exp_army",
+      "title": "US Army National Guard - Infantryman",
+      "content": "Infantryman in the US Army National Guard from December 2015 to December 2021, with deployments to Qatar, US Virgin Islands, and Kuwait. Secured premises and personnel by patrolling entry points and monitoring surveillance equipment worth $45M+. Ensured the security, safety, and well-being of all personnel (30+) and visitors (100+ daily) on premises. Managed group of 10+ staff in creation of care packages for 700+ residents during Hurricane Irma Humanitarian Relief. Partnered with staff from US Virgin Islands, Red Cross, and United Nations Leaders and Government Officials. Coordinated movements with teams of 40+ during tanks movements and drills and operated main gun and firing controls with team of 4, leading high target detection and identification of M1Abrams Tanks.",
+      "metadata": {
+        "type": "experience",
+        "category": "military_service",
+        "organization": "US Army National Guard",
+        "role": "Infantryman",
+        "start_date": "2015-12",
+        "end_date": "2021-12",
+        "deployments": ["Qatar", "US Virgin Islands", "Kuwait"]
+      }
+    },
+    {
+      "doc_id": "project_pokedex",
+      "title": "Spring Boot Pokedex (Personal Project)",
+      "content": "Built a full-stack Java and Spring Boot application using Lombok, Postgres, Kafka and REST APIs to manage Pokémon data. Implemented CRUD operations, authentication flows, and schema design, demonstrating enterprise-level Java backend development. Deployed project in a Linux environment with GitHub integration for CI/CD.",
+      "metadata": {
+        "type": "project",
+        "category": "personal",
+        "name": "Spring Boot Pokedex",
+        "technologies": ["Java", "Spring Boot", "Lombok", "PostgreSQL", "Kafka", "REST APIs", "Linux", "GitHub", "CI/CD"]
+      }
+    },
+    {
+      "doc_id": "project_dreamnet",
+      "title": "Dream Net AI Project",
+      "content": "Built an AI dream interpreter using Next.js and ChatGPT, trained on specialized dream data with 25% improved accuracy during a 30-tester beta. Implemented Supabase for user authentication and backend services, ensuring real-time data management and secure access.",
+      "metadata": {
+        "type": "project",
+        "category": "ai",
+        "name": "Dream Net AI",
+        "technologies": ["Next.js", "ChatGPT", "Supabase"]
+      }
+    },
+    {
+      "doc_id": "project_trading_bot",
+      "title": "Automated Options Trading Bot",
+      "content": "Coded a Python bot with Alpaca API and OpenAI, delivering 15% ROI in $100,000 paper money tests. Designed a Streamlit dashboard with advanced strategies for real-time trade monitoring and execution.",
+      "metadata": {
+        "type": "project",
+        "category": "personal",
+        "name": "Automated Options Trading Bot",
+        "technologies": ["Python", "Alpaca API", "OpenAI", "Streamlit"]
+      }
+    },
+    {
+      "doc_id": "project_soke2x",
+      "title": "Soke2x Smoothie Shop",
+      "content": "Designed a 3D ecommerce site with Three.js and Figma UI/UX, growing smoothie shop orders from 5-10 daily to 15-20. Integrated Node.js for optimized navigation and email APIs, cutting response times by 50% and doubling order volume in 12 months.",
+      "metadata": {
+        "type": "project",
+        "category": "ecommerce",
+        "name": "Soke2x Smoothie Shop",
+        "technologies": ["Three.js", "Figma", "Node.js"]
+      }
+    },
+    {
+      "doc_id": "education",
+      "title": "Education",
+      "content": "Studied General Studies Major at Northern Community College.",
+      "metadata": {
+        "type": "education",
+        "category": "academic",
+        "institution": "Northern Community College",
+        "major": "General Studies"
+      }
+    },
+    {
+      "doc_id": "software_skills",
+      "title": "Software and Communication Tools",
+      "content": "Proficient in Microsoft Suite, Slack, Airtable CRM, and Missive Automated Messaging for team collaboration and communication.",
+      "metadata": {
+        "type": "skills",
+        "category": "software",
+        "effective_date": "2025-01-01"
+      }
+    },
+    {
+      "doc_id": "interests",
+      "title": "Personal Interests",
+      "content": "Interests include Martial Arts, Public Speaking, Cars, Technology, Japanese Culture, Vietnamese Culture, Real Estate, and Investing.",
+      "metadata": {
+        "type": "personal",
+        "category": "interests"
+      }
     }
-  },
-  {
-    "doc_id": "exp_hyperlink", 
-    "title": "Hyperlink AI Platform Engineer",
-    "content": "Lewis worked as AI Platform Engineer at Hyperlink in SF Bay Area from Jan 2024 to May 2024. Raised $3.2M at SXSW 2024 through an SVP pitch, delivering the AI speech generator MVP on time with 50+ users engaging over 5 minutes each. Built TypeScript components and optimized Next.js APIs, boosting platform stability by 30%.",
-    "metadata": {
-      "type": "experience", 
-      "company": "hyperlink",
-      "date": "2024",
-      "effective_date": "2024-01-01"
-    }
-  },
-  {
-    "doc_id": "project_dreamnet",
-    "title": "Dream Net AI Project",
-    "content": "Built an AI dream interpreter using Next.js and ChatGPT, trained on specialized dream data with 25% improved accuracy during a 30-tester beta. Implemented Supabase for user authentication and backend services, ensuring real-time data management and secure access.",
-    "metadata": {
-      "type": "project",
-      "tech": "nextjs",
-      "category": "ai",
-      "effective_date": "2024-01-01"
-    }
-  },
-  {
-    "doc_id": "project_soke2x",
-    "title": "Soke2x Smoothie Shop",
-    "content": "Designed a 3D ecommerce site with Three.js and Figma UI/UX, growing smoothie shop orders from 5-10 daily to 15-20. Integrated Node.js for optimized navigation and email APIs, cutting response times by 50% and doubling order volume in 12 months.",
-    "metadata": {
-      "type": "project",
-      "tech": "threejs",
-      "category": "ecommerce",
-      "effective_date": "2023-02-01"
-    }
-  },
-  {
-    "doc_id": "skills_frontend",
-    "title": "Frontend Technical Skills",
-    "content": "Lewis has experience with JavaScript, TypeScript, Next.js, React, Bootstrap, HTML5/CSS3, TailwindCSS, MantineCSS. Also proficient with Git, GitHub, Docker, Jira, and Visual Studio Code.",
-    "metadata": {
-      "type": "skills",
-      "category": "technical",
-      "effective_date": "2023-01-01"
-    }
-  },
-  {
-    "doc_id": "contact_info",
-    "title": "Contact Information",
-    "content": "Lewis Meyers can be contacted at meyerslewis193@gmail.com or through LinkedIn at linkedin.com/in/lewiscmeyers. His portfolio website is lewismeyers.dev.",
-    "metadata": {
-      "type": "contact",
-      "category": "personal",
-      "effective_date": "2023-01-01"
-    }
-  }
-]
+  ]
+}
