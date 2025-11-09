@@ -26,7 +26,7 @@ interface ChatWidgetProps {
 const ChatWidget: React.FC<ChatWidgetProps> = ({
   fontMode = "pixel",
   apiEndpoint,
-  useRAG = false,
+  useRAG = true,
 }) => {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
