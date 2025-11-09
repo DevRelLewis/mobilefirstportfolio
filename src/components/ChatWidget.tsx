@@ -26,7 +26,7 @@ interface ChatWidgetProps {
 const ChatWidget: React.FC<ChatWidgetProps> = ({
   fontMode = "pixel",
   apiEndpoint,
-  useRAG = false,
+  useRAG = true,
 }) => {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
@@ -44,10 +44,35 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({
   const fontClass = fontMode === "pixel" ? "font-pixel" : "font-lato";
 
   const resolvedEndpoint = useMemo(() => {
+    const baseFromVite =
+      typeof import.meta !== "undefined" &&
+      (import.meta as any)?.env?.VITE_CHAT_API_BASE;
+    const baseFromNext =
+      typeof process !== "undefined" &&
+      (process as any)?.env?.NEXT_PUBLIC_CHAT_API_BASE;
+
+    const publicBase = (baseFromVite || baseFromNext || "") as string;
+
     if (apiEndpoint && apiEndpoint.trim()) {
       return apiEndpoint.trim();
     }
-    return "/api/chat";
+    if (publicBase) {
+      return `${publicBase.replace(/\/$/, "")}`;
+    }
+
+    // Environment-aware defaults
+    const isLocalDev =
+      typeof window !== "undefined" &&
+      (window.location.hostname === "localhost" ||
+        window.location.hostname === "127.0.0.1");
+
+    if (isLocalDev) {
+      // Local development - point to FastAPI
+      return "http://localhost:8000";
+    } else {
+      // Production - use relative paths for now to avoid CORS
+      return "";
+    }
   }, [apiEndpoint]);
 
   const getClassificationBadgeColor = (classification: string) => {
@@ -96,8 +121,8 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({
 
     try {
       const endpoint = useRAG
-        ? `${resolvedEndpoint.replace("/api/chat", "/api/rag/query")}`
-        : resolvedEndpoint;
+        ? `${resolvedEndpoint}/api/rag/query`
+        : `${resolvedEndpoint}/api/chat`;
 
       const requestBody = useRAG
         ? {

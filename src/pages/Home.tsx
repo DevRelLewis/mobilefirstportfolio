@@ -106,12 +106,6 @@ const Home: React.FC = () => {
     localStorage.setItem("fontMode", newMode);
   };
 
-  // const handleOnType = () => {
-  //   if (bottomRef.current) {
-  //     bottomRef.current.scrollIntoView({ behavior: 'smooth' });
-  //   }
-  // };
-
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -122,7 +116,17 @@ const Home: React.FC = () => {
     }
   };
 
-  // const fontClass = fontMode === 'pixel' ? 'font-pixel' : 'font-lato';
+  const getApiEndpoint = () => {
+    if (typeof window === "undefined") return ""; // SSR safety
+
+    const isLocal =
+      window.location.hostname === "localhost" ||
+      window.location.hostname === "127.0.0.1";
+
+    return isLocal
+      ? "http://localhost:8000"
+      : "https://chatbot-api-jet.vercel.app/api/chat";
+  };
 
   return (
     <div
@@ -675,7 +679,8 @@ const Home: React.FC = () => {
       </footer>
       <ChatWidget
         fontMode="lato"
-        apiEndpoint="https://chatbot-api-jet.vercel.app/api/chat"
+        apiEndpoint={getApiEndpoint()}
+        useRAG={true}
       />
     </div>
   );
