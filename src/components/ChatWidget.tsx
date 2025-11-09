@@ -1,59 +1,96 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState } from "react";
+
+interface Citation {
+  content: string;
+  source_system: string;
+  classification: string;
+  file_path: string;
+  score: number;
+}
 
 interface ChatMessage {
-  role: 'user' | 'assistant';
+  role: "user" | "assistant";
   content: string;
-  citations?: string[];
+  citations?: string[] | Citation[];
   confidence?: number;
+  source_breakdown?: Record<string, number>;
   trace?: any;
 }
 
 interface ChatWidgetProps {
-  fontMode?: 'pixel' | 'lato';
-  /** Absolute or relative URL. Prop wins over envs. */
+  fontMode?: "pixel" | "lato";
   apiEndpoint?: string;
+  useRAG?: boolean;
 }
 
 const ChatWidget: React.FC<ChatWidgetProps> = ({
-  fontMode = 'pixel',
-  apiEndpoint, // no localhost default anymore
+  fontMode = "pixel",
+  apiEndpoint,
+  useRAG = true,
 }) => {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
-      role: 'assistant',
-      content:
-        "Hi! I'm Lewis's portfolio assistant. Ask me about his experience, projects, or technical skills!",
+      role: "assistant",
+      content: useRAG
+        ? "Hi! I'm Lewis's RAG-powered portfolio assistant. I can answer questions about his GitHub projects, work experience, and technical skills using real-time data!"
+        : "Hi! I'm Lewis's portfolio assistant. Ask me about his experience, projects, or technical skills!",
     },
   ]);
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showTrace, setShowTrace] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const fontClass = fontMode === 'pixel' ? 'font-pixel' : 'font-lato';
+  const fontClass = fontMode === "pixel" ? "font-pixel" : "font-lato";
 
-  // Resolve endpoint with clear precedence:
-  // 1) Prop (absolute or relative)
-  // 2) Public env base (Vite or Next.js) + '/api/chat'
-  // 3) Same-origin '/api/chat'
   const resolvedEndpoint = useMemo(() => {
     const baseFromVite =
-      typeof import.meta !== 'undefined' &&
+      typeof import.meta !== "undefined" &&
       (import.meta as any)?.env?.VITE_CHAT_API_BASE;
     const baseFromNext =
-      typeof process !== 'undefined' && (process as any)?.env?.NEXT_PUBLIC_CHAT_API_BASE;
+      typeof process !== "undefined" &&
+      (process as any)?.env?.NEXT_PUBLIC_CHAT_API_BASE;
 
-    const publicBase = (baseFromVite || baseFromNext || '') as string;
+    const publicBase = (baseFromVite || baseFromNext || "") as string;
 
     if (apiEndpoint && apiEndpoint.trim()) {
       return apiEndpoint.trim();
     }
     if (publicBase) {
-      return `${publicBase.replace(/\/$/, '')}/api/chat`;
+      return `${publicBase.replace(/\/$/, "")}/api/chat`;
     }
-    // default to same-origin path; never hard-code localhost
-    return '/api/chat';
+    return "/api/chat";
   }, [apiEndpoint]);
+
+  const getClassificationBadgeColor = (classification: string) => {
+    switch (classification?.toLowerCase()) {
+      case "confidential":
+        return "bg-red-100 text-red-800 border-red-200";
+      case "restricted":
+        return "bg-orange-100 text-orange-800 border-orange-200";
+      case "technical":
+        return "bg-blue-100 text-blue-800 border-blue-200";
+      case "public":
+        return "bg-green-100 text-green-800 border-green-200";
+      default:
+        return "bg-gray-100 text-gray-800 border-gray-200";
+    }
+  };
+
+  const getSourceSystemIcon = (sourceSystem: string) => {
+    switch (sourceSystem?.toLowerCase()) {
+      case "github":
+        return "🐙";
+      case "hr":
+        return "👔";
+      case "ats":
+        return "📋";
+      case "linkedin":
+        return "💼";
+      default:
+        return "📄";
+    }
+  };
 
   const sendMessage = async () => {
     if (!input.trim() || isLoading) return;
@@ -61,25 +98,38 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({
     const text = input.trim();
 
     const userMessage: ChatMessage = {
-      role: 'user',
+      role: "user",
       content: text,
     };
 
     setMessages((prev) => [...prev, userMessage]);
-    setInput('');
+    setInput("");
     setIsLoading(true);
 
     try {
-      const response = await fetch(resolvedEndpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          message: text,
-          config: {
-            top_k: 3,
-            llm: { temperature: 0.1 },
-          },
-        }),
+      const endpoint = useRAG
+        ? `${resolvedEndpoint.replace("/api/chat", "/api/rag/query")}`
+        : resolvedEndpoint;
+
+      const requestBody = useRAG
+        ? {
+            query: text,
+            top_k: 5,
+            threshold: 0.25,
+          }
+        : {
+            message: text,
+            use_rag: true,
+            config: {
+              top_k: 3,
+              llm: { temperature: 0.1 },
+            },
+          };
+
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(requestBody),
       });
 
       if (!response.ok) {
@@ -89,22 +139,23 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({
       const data = await response.json();
 
       const assistantMessage: ChatMessage = {
-        role: 'assistant',
+        role: "assistant",
         content:
           data.answer ||
-          'Sorry, I encountered an error processing your request.',
+          "Sorry, I encountered an error processing your request.",
         citations: data.citations || [],
         confidence: data.confidence ?? 0,
+        source_breakdown: data.source_breakdown,
         trace: data._trace,
       };
 
       setMessages((prev) => [...prev, assistantMessage]);
     } catch (error) {
-      console.error('Chat error:', error);
+      console.error("Chat error:", error);
       const errorMessage: ChatMessage = {
-        role: 'assistant',
+        role: "assistant",
         content:
-          'Sorry, I had trouble connecting to my knowledge base. Please try again.',
+          "Sorry, I had trouble connecting to my knowledge base. Please try again.",
       };
       setMessages((prev) => [...prev, errorMessage]);
     } finally {
@@ -113,10 +164,84 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
+    if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       sendMessage();
     }
+  };
+
+  const renderCitations = (citations: string[] | Citation[]) => {
+    if (!citations || citations.length === 0) return null;
+
+    // Handle both old format (string[]) and new RAG format (Citation[])
+    const isRAGFormat =
+      citations.length > 0 && typeof citations[0] === "object";
+
+    if (isRAGFormat) {
+      const ragCitations = citations as Citation[];
+      return (
+        <div className="mt-2 space-y-1">
+          <div className="text-xs font-semibold text-gray-600">Sources:</div>
+          {ragCitations.map((cite, idx) => (
+            <div key={idx} className="text-xs bg-gray-50 rounded p-2 border">
+              <div className="flex items-center justify-between mb-1">
+                <div className="flex items-center space-x-2">
+                  <span>{getSourceSystemIcon(cite.source_system)}</span>
+                  <span className="font-medium">{cite.source_system}</span>
+                  <span
+                    className={`px-2 py-0.5 rounded text-xs border ${getClassificationBadgeColor(
+                      cite.classification
+                    )}`}>
+                    {cite.classification}
+                  </span>
+                </div>
+                <span className="text-gray-500">
+                  Score: {(cite.score * 100).toFixed(0)}%
+                </span>
+              </div>
+              <div className="text-gray-700">
+                {cite.content.substring(0, 120)}...
+              </div>
+              <div className="text-gray-500 text-xs mt-1">
+                {cite.file_path.split("/").pop()}
+              </div>
+            </div>
+          ))}
+        </div>
+      );
+    } else {
+      // Original format
+      const stringCitations = citations as string[];
+      return (
+        <div className="mt-1 text-xs opacity-75">
+          Sources: {stringCitations.join(", ")}
+        </div>
+      );
+    }
+  };
+
+  const renderSourceBreakdown = (breakdown: Record<string, number>) => {
+    if (!breakdown || Object.keys(breakdown).length === 0) return null;
+
+    return (
+      <div className="mt-2 text-xs">
+        <div className="font-semibold text-gray-600 mb-1">
+          Source Distribution:
+        </div>
+        <div className="flex flex-wrap gap-1">
+          {Object.entries(breakdown).map(([source, count]) => (
+            <span
+              key={source}
+              className="inline-flex items-center space-x-1 px-2 py-1 rounded bg-blue-100 text-blue-800">
+              <span>{getSourceSystemIcon(source)}</span>
+              <span>
+                {source}: {count}
+              </span>
+            </span>
+          ))}
+        </div>
+      </div>
+    );
   };
 
   if (!isExpanded) {
@@ -124,9 +249,8 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({
       <div className="fixed bottom-4 right-4 z-50">
         <button
           onClick={() => setIsExpanded(true)}
-          className={`bg-primary-600 hover:bg-primary-700 text-white p-4 rounded-full shadow-lg transition-all duration-300 ${fontClass}`}
-        >
-          Ask Lewis's Assistant!
+          className={`bg-primary-600 hover:bg-primary-700 text-white p-4 rounded-full shadow-lg transition-all duration-300 ${fontClass}`}>
+          {useRAG ? "🚀 Ask Lewis's RAG Assistant!" : "Ask Lewis's Assistant!"}
         </button>
       </div>
     );
@@ -136,12 +260,13 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({
     <div className="fixed bottom-4 right-4 w-96 h-96 bg-white text-gray-800 rounded-lg shadow-xl border-2 border-gray-300 flex flex-col z-50">
       {/* Header */}
       <div className="bg-primary-600 text-white p-3 rounded-t-lg flex justify-between items-center">
-        <h3 className={`font-bold ${fontClass}`}>Lewis's Portfolio Assistant</h3>
+        <h3 className={`font-bold ${fontClass}`}>
+          Lewis's {useRAG ? "RAG" : "Portfolio"} Assistant
+        </h3>
         <button
           onClick={() => setIsExpanded(false)}
           className="text-white hover:text-gray-200"
-          aria-label="Close chat"
-        >
+          aria-label="Close chat">
           ✕
         </button>
       </div>
@@ -151,26 +276,24 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({
         {messages.map((message, index) => (
           <div
             key={index}
-            className={message.role === 'user' ? 'text-right' : 'text-left'}
-          >
+            className={message.role === "user" ? "text-right" : "text-left"}>
             <div
               className={`inline-block max-w-[80%] p-2 rounded-lg ${fontClass} text-sm ${
-                message.role === 'user'
-                  ? 'bg-primary-600 text-white'
-                  : 'bg-gray-100 text-gray-800'
-              }`}
-            >
+                message.role === "user"
+                  ? "bg-primary-600 text-white"
+                  : "bg-gray-100 text-gray-800"
+              }`}>
               <div>{message.content}</div>
 
-              {/* Citations */}
-              {message.citations && message.citations.length > 0 && (
-                <div className="mt-1 text-xs opacity-75">
-                  Sources: {message.citations.join(', ')}
-                </div>
-              )}
+              {/* Enhanced Citations */}
+              {renderCitations(message.citations || [])}
+
+              {/* Source Breakdown */}
+              {message.source_breakdown &&
+                renderSourceBreakdown(message.source_breakdown)}
 
               {/* Confidence */}
-              {typeof message.confidence === 'number' && (
+              {typeof message.confidence === "number" && (
                 <div className="mt-1 text-xs opacity-75">
                   Confidence: {Math.round((message.confidence ?? 0) * 100)}%
                 </div>
@@ -180,9 +303,8 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({
               {message.trace && (
                 <button
                   onClick={() => setShowTrace((v) => !v)}
-                  className="mt-1 text-xs underline opacity-75 hover:opacity-100"
-                >
-                  {showTrace ? 'Hide' : 'Show'} Debug Info
+                  className="mt-1 text-xs underline opacity-75 hover:opacity-100">
+                  {showTrace ? "Hide" : "Show"} Debug Info
                 </button>
               )}
             </div>
@@ -200,17 +322,16 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({
         {isLoading && (
           <div className="text-left">
             <div
-              className={`inline-block bg-gray-100 text-gray-800 p-2 rounded-lg ${fontClass} text-sm`}
-            >
+              className={`inline-block bg-gray-100 text-gray-800 p-2 rounded-lg ${fontClass} text-sm`}>
               <div className="flex items-center space-x-1">
                 <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" />
                 <div
                   className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
-                  style={{ animationDelay: '0.1s' }}
+                  style={{ animationDelay: "0.1s" }}
                 />
                 <div
                   className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
-                  style={{ animationDelay: '0.2s' }}
+                  style={{ animationDelay: "0.2s" }}
                 />
               </div>
             </div>
@@ -226,7 +347,11 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Ask about Lewis's experience..."
+            placeholder={
+              useRAG
+                ? "Ask about Lewis's GitHub projects, skills, or experience..."
+                : "Ask about Lewis's experience..."
+            }
             className={`flex-1 bg-white text-gray-800 placeholder-gray-500 caret-purple-600
                         border border-gray-300 rounded-lg px-3 py-2 text-sm
                         focus:outline-none focus:ring-2 focus:ring-primary-300 ${fontClass}`}
@@ -235,8 +360,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({
           <button
             onClick={sendMessage}
             disabled={!input.trim() || isLoading}
-            className={`bg-primary-600 hover:bg-primary-700 disabled:bg-gray-400 text-white px-4 py-2 rounded-lg transition-colors ${fontClass} text-sm`}
-          >
+            className={`bg-primary-600 hover:bg-primary-700 disabled:bg-gray-400 text-white px-4 py-2 rounded-lg transition-colors ${fontClass} text-sm`}>
             Send
           </button>
         </div>
