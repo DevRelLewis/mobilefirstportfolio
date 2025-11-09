@@ -7,7 +7,7 @@ import ChatWidget from "../components/ChatWidget";
 const Home: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const resumeContentRef = useRef<HTMLDivElement>(null);
-  const bottomRef = useRef<HTMLDivElement>(null);
+  // const bottomRef = useRef<HTMLDivElement>(null);
   const [floatingIcons, setFloatingIcons] = useState<FloatingIcon[]>([]);
   const [fontMode, setFontMode] = useState<"pixel" | "lato">("pixel");
 
