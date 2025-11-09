@@ -26,7 +26,7 @@ interface ChatWidgetProps {
 const ChatWidget: React.FC<ChatWidgetProps> = ({
   fontMode = "pixel",
   apiEndpoint,
-  useRAG = true,
+  useRAG = false,
 }) => {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
@@ -44,18 +44,20 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({
   const fontClass = fontMode === "pixel" ? "font-pixel" : "font-lato";
 
   const resolvedEndpoint = useMemo(() => {
-    // For Vite (development)
-    const viteBase =
-      typeof window !== "undefined" && (window as any).__VITE_CHAT_API_BASE__;
+    const baseFromVite =
+      typeof import.meta !== "undefined" &&
+      (import.meta as any)?.env?.VITE_CHAT_API_BASE;
+    const baseFromNext =
+      typeof process !== "undefined" &&
+      (process as any)?.env?.NEXT_PUBLIC_CHAT_API_BASE;
 
-    // For Next.js/production
-    const nextBase = process.env.NEXT_PUBLIC_CHAT_API_BASE;
+    const publicBase = (baseFromVite || baseFromNext || "") as string;
 
     if (apiEndpoint && apiEndpoint.trim()) {
       return apiEndpoint.trim();
     }
-    if (viteBase || nextBase) {
-      return `${(viteBase || nextBase).replace(/\/$/, "")}/api/chat`;
+    if (publicBase) {
+      return `${publicBase.replace(/\/$/, "")}/api/chat`;
     }
     return "/api/chat";
   }, [apiEndpoint]);
