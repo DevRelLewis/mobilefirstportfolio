@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 interface ContactFormProps {
   fontMode?: 'pixel' | 'lato'; // Make it optional with a default
