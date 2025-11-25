@@ -308,7 +308,7 @@ const Home: React.FC = () => {
                 </span>
               </div>
               <a
-                href="https://topshelfintel.vercel.app/"
+                href="https://topshelfintelligence.com/"
                 target="_blank"
                 rel="noopener noreferrer">
                 <button
